@@ -1,0 +1,20 @@
+body {
+	margin: 0;
+	font-family: proxima_novalight,'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.wrapper {
+	width: 80%;
+	margin: auto;
+	display: table;
+}
+
+.link {
+	text-decoration: none;
+  	text-transform: uppercase;
+	color: gray;
+}
+
+.link:hover {
+	color: #bebebe;
+}

@@ -2,21 +2,30 @@
  * Site header
  */
 .site-header {
-  border-top: 5px solid #424242;
-  border-bottom: 1px solid #e8e8e8;
+  background-color: #27272b;
   min-height: 55.95px;
   position: relative;
 }
 
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-links__item {
+  display: inline;
+  padding-right: 25px;
+}
+
+.nav-links__item:last-child {
+  padding-right: 0;
+}
+
 .site-title {
-  font-size: 26px;
-  font-weight: 300;
-  line-height: 54px;
-  letter-spacing: -1px;
-  margin-bottom: 0;
-  float: left; }
-  .site-title, .site-title:visited {
-    color: #424242; }
+  display: table-cell;
+  vertical-align: middle;
+}
+
 
 .site-nav {
   float: right;
