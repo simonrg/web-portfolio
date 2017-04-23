@@ -1,10 +1,26 @@
+@font-face {
+	font-family: 'Proxima Nova Lt';
+	src: url('../assets/fonts/ProximaNova-Light.eot');
+	src: url('../assets/fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/ProximaNova-Light.woff') format('woff'),
+		url('../assets/fonts/ProximaNova-Light.ttf') format('truetype'),
+		url("../assets/fonts/ProximaNova-Light.otf") format("opentype");
+	font-weight: 300;
+	font-style: normal;
+}
+
 body {
 	margin: 0;
-	font-family: proxima_novalight,'Helvetica Neue',Helvetica,Arial,sans-serif;
+	font-family: 'Proxima Nova Lt','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+p {
+	line-height: 1.4em;
 }
 
 .wrapper {
 	width: 80%;
+	height: 100%;
 	margin: auto;
 	display: table;
 }
@@ -17,4 +33,9 @@ body {
 
 .link:hover {
 	color: #bebebe;
+}
+
+.section-title {
+	text-align: center;
+	text-transform: uppercase;
 }

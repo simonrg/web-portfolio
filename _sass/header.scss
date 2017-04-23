@@ -4,7 +4,8 @@
 .site-header {
   background-color: #27272b;
   min-height: 55.95px;
-  position: relative;
+  position: fixed;
+  width: 100%;
 }
 
 .nav-links {
@@ -24,6 +25,16 @@
 .site-title {
   display: table-cell;
   vertical-align: middle;
+}
+
+.site-title__text {
+  display: inline-block;
+  text-transform: uppercase;
+  color: white;
+}
+
+.site-title__focus {
+  color: #2e802e;
 }
 
 

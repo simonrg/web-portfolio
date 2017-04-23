@@ -2,5 +2,27 @@
 	background-image: url('../assets/art/twau.png');
 	background-color: #afafaf;
 	background-position: center center;
-	min-height: 640px;
+	height: 700px;
+	padding-top: 86px;
+    display: table;
+    width: 100%;
+}
+
+.site-hero__preview {
+    background-color: rgba(255, 255, 255, 0.7);
+    vertical-align: middle;
+    width: 20%;
+    height: 0;
+    padding: 0 50px;
+    transition: height .5s ease, padding .5s ease;
+}
+
+.site-hero__preview p,
+.site-hero__preview h3 {
+    visibility: hidden;
+}
+
+.site-hero__preview--expanded {
+    height: inherit;
+    padding: 50px;
 }
