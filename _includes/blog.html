@@ -1,0 +1,17 @@
+<main class="page-content" aria-label="Content">
+  <div class="wrapper">
+
+    <h2 class="section-title">{% if page.url contains 'blog' %} Blog {% else %} Latest posts {% endif %}</h2>
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li>
+          <span class="post-meta">Apr 24, 2017</span>
+          <h3 class="blog-heading">{{ post.title }}</h3>
+          <p class="blog-excerpt">{{ post.excerpt }}</p>
+          <p><a href="{{ post.url }}">Read more ></a></p>
+        </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</main>
