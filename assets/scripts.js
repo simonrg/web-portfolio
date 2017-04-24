@@ -2,12 +2,12 @@ $(document).ready(function(){
 
 	$('.site-hero').on('mouseenter', function(){
 		$('.site-hero__preview').addClass('site-hero__preview--expanded');
-		$('.site-hero__preview').children().css('visibility', 'visible');
+		setTimeout(function(){ $('.site-hero__preview').children().css('visibility', 'visible'); }, 100);
 	});
 
 	$('.site-hero').on('mouseleave', function(){
 		$('.site-hero__preview').removeClass('site-hero__preview--expanded');
-		$('.site-hero__preview').children().css('visibility', 'hidden');
+		setTimeout(function(){ $('.site-hero__preview').children().css('visibility', 'hidden'); }, 100);
 	});
 
 });
