@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {% include head.html %}
+
+  </head>
+
+  <body>
+
+    {% include header.html %}
+
+    <div id="main" role="main" class="container">
+      {{ content }}
+    </div>
+
+    {% include footer.html %}
+
+    {% include analytics.html %}
+  </body>
+</html>
