@@ -1,26 +1,8 @@
 ---
 title: Home
+layout: default
 ---
 
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-    <head>
+{% include hero.html %}
 
-        {% include head.html %}
-
-    </head>
-
-    <body>
-
-        {% include header.html %}
-
-        {% include hero.html %}
-
-        {% include blog.html %}
-
-        {% include footer.html %}
-
-        {% include analytics.html %}
-
-    </body>
-</html>
+{% include post-list.html %}
