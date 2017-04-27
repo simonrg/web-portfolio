@@ -1,8 +1,22 @@
 <div class="site-hero" role="banner">
+
 	<div class="wrapper">
 		<div class="site-hero__preview">
-			<h3 style="font-size: 48px;">Hello!</h3>
-			<p style="font-size: 28px;">I'm Simon Greene, a web developer and this site is to chronicle my progress of learning to become a better artist. My core body of work is illustration and digital painting, mainly character design.</p>
+			<h3 class="preview__greet">Hello!</h3>
+			<p class="preview__text">I'm Simon Greene, a web developer and this site is to chronicle my progress of learning to become a better artist. My core body of work is illustration and digital painting, mainly character design.</p>
 		</div>
 	</div>
+
+  <ul class="showcase">
+	{% for image in site.static_files %}
+		{% assign loopindex = forloop.index %}
+	  {% if image.path contains 'assets/art' %}
+	    <li class="showcase__item"><div class="image-preview" style="background-image: url('{{ site.baseurl }}{{ image.path }}');"></div></li>
+	  {% endif %}
+		{% if loopindex == 65 %}
+			{% break %}
+		{% endif %}
+	{% endfor %}
+	</ul>
+
 </div>
