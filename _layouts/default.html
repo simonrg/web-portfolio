@@ -15,7 +15,13 @@
     {% include header.html %}
 
     <div id="main" role="main" class="container">
-      {{ content }}
+
+      {% if page.title == 'Home' %}{% include hero.html %}{% endif %}
+
+      <main class="page-content" aria-label="Content">
+        <div class="wrapper">{{ content }}</div>
+      </main>
+
     </div>
 
     {% include footer.html %}
