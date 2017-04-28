@@ -6,6 +6,8 @@
   min-height: 55.95px;
   position: fixed;
   width: 100%;
+  border-bottom: 1px solid #89B6A5;
+  z-index: 99;
 }
 
 .site-header + * {
