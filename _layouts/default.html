@@ -19,7 +19,15 @@
       {% if page.title == 'Home' %}{% include hero.html %}{% endif %}
 
       <main class="page-content" aria-label="Content">
-        <div class="wrapper">{{ content }}</div>
+        <div class="wrapper">
+
+        {% if page.title != 'Home' %}
+          <h2 class="section-title">{{ page.title }}</h2>
+        {% endif %}
+
+        {{ content }}
+        
+        </div>
       </main>
 
     </div>
