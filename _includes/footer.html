@@ -1,29 +1,44 @@
 <footer class="site-footer">
-<div class="wrapper">
+  <div class="site-footer__container wrapper">
 
-  <h2 class="footer-heading">Your awesome title</h2>
+    <h4 class="footer-heading">Contact</h4>
 
-  <div class="footer-col-wrapper">
-    <div class="footer-col footer-col-1">
-      <ul class="contact-list">
-        <li>Your awesome title</li>
-        <li><a href="mailto:your-email@domain.com">your-email@domain.com</a></li> 
-      </ul>
-    </div>
+    <div class="footer-col-wrapper">
 
-    <div class="footer-col footer-col-2">
-      <ul class="social-media-list">
-        <li>
-          <a href="https://github.com/jekyll"><span class="icon icon--github"><img src="assets/icons/github.svg"/></span><span class="username">jekyll</span></a>
-        </li>
-        <li>
-          <a href="https://twitter.com/jekyllrb"><span class="icon icon--twitter"><img src="assets/icons/twitter.svg"/></span><span class="username">jekyllrb</span></a>
-        </li>
-      </ul>
-    </div>
-    <div class="footer-col footer-col-3"><p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      <div class="footer-col footer-col-1">
+        <p>Please don't hesitate to get in touch. You can shoot me an email by filling out the form below.</p>
+        <form action="https://formspree.io/{{ site.email }}" method="POST">
+          <div class="form-field__container">
+            <input type="text" name="name" class="form-field__item" placeholder="Name">
+            <input type="email" name="_replyto" class="form-field__item" placeholder="Email">
+          </div>
+          <textarea type="text" name="message" id="message" class="form-field__item contact-text" placeholder="Your Message" tabindex="1"></textarea>
+          <input type="submit" value="Send">
+        </form>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          <li class="social-media-list__item">
+            <a href="https://www.linkedin.com/in/simon-greene-b8bb70104/"><span class="icon icon--linkedin"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></span></a>
+          </li>
+          <li class="social-media-list__item">
+            <a href="#"><span class="icon icon--deviantart"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></span></a>
+          </li>
+          <li class="social-media-list__item">
+            <a href="#"><span class="icon icon--twitter"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></span><span class="username"></span></a>
+          </li>
+          <li class="social-media-list__item">
+            <a href="https://github.com/simonrg"><span class="icon icon--github"><i class="fa fa-github fa-2x" aria-hidden="true"></i></span><span class="username"></span></a>
+          </li>
+          <li class="social-media-list__item">
+            <a href="http://codepen.io/simon_rg/"><span class="icon icon--codepen"><i class="fa fa-codepen fa-2x" aria-hidden="true"></i></span></a>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
-</div>
+  <div class="sub-footer"><strong>© Simon Greene <span class="date"></span></strong></div>
 </footer>

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	var d = new Date();
+	$('.date').text(d.getFullYear());
 
 	$('.site-hero').on('mouseenter', function(){
 		$('.site-hero__preview').addClass('site-hero__preview--expanded');
