@@ -1,11 +1,10 @@
 <footer class="site-footer">
   <div class="site-footer__container wrapper">
 
-    <h4 class="footer-heading">Contact</h4>
-
     <div class="footer-col-wrapper">
 
       <div class="footer-col footer-col-1">
+        <h4 class="footer-heading">Contact</h4>
         <p>Please don't hesitate to get in touch. You can shoot me an email by filling out the form below.</p>
         <form action="https://formspree.io/{{ site.email }}" method="POST">
           <div class="form-field__container">
@@ -13,26 +12,23 @@
             <input type="email" name="_replyto" class="form-field__item" placeholder="Email">
           </div>
           <textarea type="text" name="message" id="message" class="form-field__item contact-text" placeholder="Your Message" tabindex="1"></textarea>
-          <input type="submit" value="Send">
+          <input type="submit" value="Send" class="submit-btn submit-btn--disabled" disabled>
         </form>
       </div>
 
       <div class="footer-col footer-col-2">
         <ul class="social-media-list">
           <li class="social-media-list__item">
-            <a href="https://www.linkedin.com/in/simon-greene-b8bb70104/"><span class="icon icon--linkedin"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></span></a>
+            <a href="https://www.linkedin.com/in/simon-greene-b8bb70104/" class="social-media-link"><span class="icon icon--linkedin"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></span></a>
           </li>
           <li class="social-media-list__item">
-            <a href="#"><span class="icon icon--deviantart"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></span></a>
+            <a href="http://sh-guy.deviantart.com/" class="social-media-link"><span class="icon icon--deviantart"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></span></a>
           </li>
           <li class="social-media-list__item">
-            <a href="#"><span class="icon icon--twitter"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></span><span class="username"></span></a>
+            <a href="https://github.com/simonrg" class="social-media-link"><span class="icon icon--github"><i class="fa fa-github fa-2x" aria-hidden="true"></i></span><span class="username"></span></a>
           </li>
           <li class="social-media-list__item">
-            <a href="https://github.com/simonrg"><span class="icon icon--github"><i class="fa fa-github fa-2x" aria-hidden="true"></i></span><span class="username"></span></a>
-          </li>
-          <li class="social-media-list__item">
-            <a href="http://codepen.io/simon_rg/"><span class="icon icon--codepen"><i class="fa fa-codepen fa-2x" aria-hidden="true"></i></span></a>
+            <a href="http://codepen.io/simon_rg/" class="social-media-link"><span class="icon icon--codepen"><i class="fa fa-codepen fa-2x" aria-hidden="true"></i></span></a>
           </li>
         </ul>
       </div>
