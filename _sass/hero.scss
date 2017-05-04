@@ -5,6 +5,7 @@
     display: table;
     width: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 .showcase {
@@ -38,19 +39,51 @@
     background-repeat: no-repeat;
 }
 
+.site-hero__button {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    -webkit-transition-property: top;
+    -webkit-transition-duration: 0.5s;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.site-hero__button--transition {
+    top: 700px;
+    -webkit-transition-property: top;
+    -webkit-transition-duration: 0.5s;
+}
+
 .site-hero__preview {
     background-color: rgba(255, 255, 255, 0.7);
     vertical-align: middle;
-    width: 20%;
     height: 0;
     padding: 0 50px;
     transition: height .5s ease, padding .5s ease;
 }
 
-@media (max-width: $small-up) { 
+@media (min-width: $small-up) {
     .site-hero__preview {
-        width: auto;
+        width: 25%;
     }
+}
+
+@media (max-width: $small-up) { 
+    .site-hero__button {
+        visibility: hidden;
+    }
+
+    // .site-hero__preview {
+    //     height: auto;
+    // }
+
+    // .preview__text,
+    // .preview__greet {
+    //     visibility: visible;
+    // }
 }
 
 .site-hero__preview p,
