@@ -43,6 +43,13 @@
   vertical-align: middle;
 }
 
+@media (min-width: 601px) and (max-width: 708px),
+(min-width: 1025px) and (max-width: 1053px) {
+  .site-title {
+    width: 25%;
+  }
+}
+
 .site-title__text {
   display: inline-block;
   text-transform: uppercase;
