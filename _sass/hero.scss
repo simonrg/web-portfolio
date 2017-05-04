@@ -45,6 +45,7 @@
     top: 0;
     -webkit-transition-property: top;
     -webkit-transition-duration: 0.5s;
+    visibility: hidden;
 
     &:hover {
         cursor: pointer;
@@ -71,19 +72,10 @@
     }
 }
 
-@media (max-width: $small-up) { 
+@media (min-width: $extra-large) { 
     .site-hero__button {
-        visibility: hidden;
+        visibility: visible;
     }
-
-    // .site-hero__preview {
-    //     height: auto;
-    // }
-
-    // .preview__text,
-    // .preview__greet {
-    //     visibility: visible;
-    // }
 }
 
 .site-hero__preview p,

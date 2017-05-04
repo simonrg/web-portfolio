@@ -15,11 +15,6 @@
 }
 
 @media (max-width: $small-up) { 
-  .wrapper {
-    width: 90%;
-    min-height: inherit;
-  }
-
   .site-hero__preview {
     width: auto;
   }

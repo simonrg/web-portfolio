@@ -40,10 +40,17 @@ h2 {
 }
 
 .wrapper {
-	width: 60%;
-	height: 100%;
+	width: 90%;
 	margin: auto;
 	display: table;
+	min-height: inherit;
+}
+
+@media (min-width: $large) {
+	.wrapper {
+		width: 60%;
+		height: 100%;
+	}
 }
 
 .page-content__block {

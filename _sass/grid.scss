@@ -9,10 +9,9 @@
 .col {
 	display: block;
 	float: left;
-	margin: 1% 0 1% 1.6%;
+	margin: 1% 0 1% 3%;
 	text-align: center;
 }
-.col:first-child { margin-left: 0; }
 
 /*  GROUPING  */
 .row:before,
@@ -23,16 +22,30 @@
 /*  GRID OF THREE  */
 .span_3_of_3 { width: 100%; }
 .span_2_of_3 { width: 66.13%; }
-.span_1_of_3 { width: 32.26%; }
+.span_1_of_3 { width: 30.33%; }
 
 /*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: $medium-only) {
 	.col {  margin: 1% 0 1% 0%; }
 	.span_3_of_3, .span_2_of_3, .span_1_of_3 { width: 100%; }
 }
 
+.gallery-table {
+    display: table;
+}
+
 .gallery__image {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    width: 370px;
+}
+
+@media (min-width: $medium-only) and (max-width: $extra-large) {
+	.col {
+		width: 48%;
+		margin-left: 0;
+
+		&:nth-child(even) {
+			margin-left: 3%;
+		}
+	}
 }
