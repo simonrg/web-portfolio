@@ -47,6 +47,12 @@
     transition: height .5s ease, padding .5s ease;
 }
 
+@media (max-width: $small-up) { 
+    .site-hero__preview {
+        width: auto;
+    }
+}
+
 .site-hero__preview p,
 .site-hero__preview h3 {
     visibility: hidden;

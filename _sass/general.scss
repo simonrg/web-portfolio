@@ -1,3 +1,10 @@
+$extra-small: 320px;	/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+$small-only: 480px;		/* smartphones, Android phones, landscape iPhone */
+$small-up: 600px;		/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+$medium-only: 801px;	/* tablet, landscape iPad, lo-res laptops ands desktops */
+$large: 1025px;			/* big landscape tablets, laptops, and desktops */
+$extra-large: 1281px;	/* hi-res laptops and desktops */
+
 @font-face {
 	font-family: 'Proxima Nova Lt';
 	src: url('../assets/fonts/ProximaNova-Light.eot');
