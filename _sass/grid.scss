@@ -30,6 +30,12 @@
 	.span_3_of_3, .span_2_of_3, .span_1_of_3 { width: 100%; }
 }
 
+@media only screen and (min-width: $extra-large) {
+	.col:nth-child(3n+1) {
+		clear: both;
+	}
+}
+
 .gallery-table {
     display: table;
 }
@@ -37,12 +43,18 @@
 .gallery__image {
     width: 100%;
     height: auto;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
 }
 
 @media (min-width: $medium-only) and (max-width: $extra-large) {
 	.col {
 		width: 48%;
 		margin-left: 0;
+
+		&:nth-child(3) {
+			clear: both;
+		}
 
 		&:nth-child(even) {
 			margin-left: 3%;
