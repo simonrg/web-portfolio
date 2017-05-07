@@ -1,3 +1,8 @@
+var page = $(location).attr('pathname');
+if(page.includes('draft')) {
+	cloudinaryAPI();
+}
+
 $(document).ready(function(){
 	footerYear();
 
@@ -42,6 +47,24 @@ function formValidation() {
 		if($(this).val().length == 0 && $('.submit-btn').hasClass('submit-btn--enabled')) {
 			$('.submit-btn').attr('disabled', true);
 			$('.submit-btn').toggleClass("submit-btn--enabled submit-btn--disabled");
+		}
+	});
+}
+
+function cloudinaryAPI() {
+	$.ajax({
+		type: "GET",
+		url: 'http://res.cloudinary.com/dvzk8xiff/image/list/sketch.json',
+		crossDomain: true,
+		success: function(data) {
+			for(var i = 0; i < data.resources.length; i++) {
+				var path = data.resources[i].public_id + '.' + data.resources[i].format;
+
+				$('.gallery-table').append('<div class="col span_1_of_3"><a data-fancybox="gallery" href="http://res.cloudinary.com/dvzk8xiff/image/upload/v1494158321/' + path + '"><img src="http://res.cloudinary.com/dvzk8xiff/image/upload/v1494158321/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
+			}
+		},
+		error: function() {
+			console.log('The requested resources could not be loaded.');
 		}
 	});
 }
