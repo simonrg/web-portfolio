@@ -1,11 +1,12 @@
 .site-hero {
-	//background-image: url('../assets/art/twau.png');
 	background-position: center center;
 	height: 700px;
-    display: table;
     width: 100%;
     position: relative;
     overflow: hidden;
+    -webkit-box-shadow: inset 0px 0px 160px 31px rgba(0,0,0,1);
+    -moz-box-shadow: inset 0px 0px 160px 31px rgba(0,0,0,1);
+    box-shadow: inset 0px 0px 160px 31px rgba(0,0,0,1);
 }
 
 .showcase {
@@ -46,6 +47,8 @@
     -webkit-transition-property: top;
     -webkit-transition-duration: 0.5s;
     visibility: hidden;
+    color: white;
+    text-shadow: 0px 0px 3px #000;
 
     &:hover {
         cursor: pointer;
