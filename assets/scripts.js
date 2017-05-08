@@ -54,7 +54,7 @@ function formValidation() {
 function cloudinaryAPI() {
 	$.ajax({
 		type: "GET",
-		url: 'http://res.cloudinary.com/dvzk8xiff/image/list/sketch.json',
+		url: 'https://res.cloudinary.com/dvzk8xiff/image/list/sketch.json',
 		crossDomain: true,
 		success: function(data) {
 			for(var i = 0; i < data.resources.length; i++) {
