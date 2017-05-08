@@ -25,11 +25,7 @@
 .social-media-link {
   display: block;
   height: inherit;
-  color: #616161;
-
-  &:hover {
-    color: #57c5a0;
-  }
+  color: inherit;
 }
 
 .social-media-list__item {
@@ -46,6 +42,7 @@
 
   &:hover {
     border: 2px solid #57c5a0;
+    color: #57c5a0;
   }
 }
 
@@ -56,6 +53,10 @@
 
 .footer-col-2 {
   margin: 30px 0;
+}
+
+.icon {
+  margin-left: 2px;
 }
 
 @media screen and (max-width: 800px) {
