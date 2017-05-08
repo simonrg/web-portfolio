@@ -30,7 +30,9 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
-
+collections:
+  posts: 
+    permalink: /blog/:title.html
 # sass:
 #   sass_dir: assets/css
 #   style: :nested
