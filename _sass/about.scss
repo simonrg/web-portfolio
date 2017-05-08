@@ -3,16 +3,35 @@
  */
 
 .summary-blurb {
-	display: table-cell;
-	vertical-align: middle;
-	width: 75%;
+	display: block;
 }
 
 .avatar-image {
+	display: block;
+	margin: auto;
 	width: 250px;
-	float: right;
 	border-radius: 50%;
-	margin-left: 50px;
+}
+
+@media (min-width: $small-up) {
+	.summary-blurb {
+		display: table-cell;
+		vertical-align: middle;
+		width: 75%;
+	}
+
+	.avatar-image {
+		display: block;
+		margin-left: 50px;
+		float: right;
+	}
+}
+
+@media (min-width: $small-up) and (max-width: $medium-only) {
+	.summary-image {
+    	display: table-cell;
+    	vertical-align: middle;
+	}
 }
 
 .summary-wrapper {
