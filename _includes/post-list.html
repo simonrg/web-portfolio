@@ -3,7 +3,7 @@
     {% for post in site.posts %}
       <li>
         <h3 class="blog-heading">{{ post.title }}</h3>
-        <span class="post-meta">Apr 24, 2017</span>
+        <span class="post-meta">{{ post.date | date: "%B %e, %Y" }}</span>
         <p class="blog-excerpt">{{ post.excerpt }}</p>
         <p><a href="{{ post.url }}">Read more ></a></p>
       </li>

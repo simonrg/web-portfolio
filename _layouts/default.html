@@ -21,7 +21,7 @@
       <main class="page-content" aria-label="Content">
         <div class="wrapper">
 
-        {% if page.title != 'Home' %}
+        {% if page.title != 'Home' and page.layout != 'post' %}
           <h2 class="section-title">{{ page.title }}</h2>
         {% endif %}
 

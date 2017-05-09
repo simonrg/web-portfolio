@@ -5,15 +5,15 @@ layout: default
 <main class="page-content" aria-label="Content">
   <div class="page-content__block">
     
-    <div class="wrapper">
-			<article class="post">
-		  	<h2>{{ page.title }}</h2>
+	<article class="post">
+		<h2>{{ page.title }}</h2>
 
-		  	<div class="date">Written on {{ page.date | date: "%B %e, %Y" }}</div>
+		<div class="post-date">Written on {{ page.date | date: "%B %e, %Y" }}</div>
 
-				<div class="entry">{{ content }}</div>
-			</article>
-    </div>
+		<div class="entry">{{ content }}</div>
+
+		<a href="{{site.baseurl}}/blog">Back</a>
+	</article>
 
   </div>
 </main>
