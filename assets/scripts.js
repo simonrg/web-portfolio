@@ -1,9 +1,13 @@
-var page = $(location).attr('pathname');
+var page = $(location).attr('pathname').replace(/\//g, '');
 if(page.includes('draft')) {
 	cloudinaryAPI();
 }
 
 $(document).ready(function(){
+
+	if(navigator.userAgent.indexOf("Mobile") > -1)
+		toggleMobileMenu();
+
 	footerYear();
 
 	homepageBanner();
@@ -12,6 +16,28 @@ $(document).ready(function(){
 });
 
 
+
+function toggleMobileMenu() {
+	var menu = $('.mobile-menu__item');
+
+	for(var i = 0; i < menu.length; i++) {
+		if($.trim(menu[i].innerText) == $.trim(page.toUpperCase())) {	//all pages
+			$('.mobile-menu__item:eq(' + i + ')').addClass('active');
+			continue;
+		}
+		else if(page === '') {	//homepage is just base url
+			$('.mobile-menu__item:eq(0)').addClass('active');
+			continue;
+		}
+	}
+
+	$('.nav-trigger').on('click', function(){
+		if($('.mobile-menu').hasClass('menu-open'))
+			$('.mobile-menu').removeClass('menu-open');
+		else 
+			$('.mobile-menu').addClass('menu-open');
+	});
+}
 
 function footerYear() {
 	var d = new Date();

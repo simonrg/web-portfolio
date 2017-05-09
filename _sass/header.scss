@@ -24,14 +24,20 @@
   }
 }
 
+.mobile-nav-links,
 .nav-links {
   list-style-type: none;
   padding: 0;
 }
 
+.mobile-nav-links {
+  margin: 0;
+}
+
 .nav-links__item {
   display: inline;
   padding-right: 25px;
+  font-size: 19px;
 }
 
 .nav-links__item:last-child {
@@ -86,55 +92,71 @@
 @media screen and (max-width: 600px) {
   .site-nav {
     position: absolute;
-    top: 9px;
-    right: 26px;
-    background-color: #fdfdfd;
-    border: 1px solid #e8e8e8;
-    border-radius: 5px;
-    text-align: right; 
+    right: 17px;
+    top: 50%;
+    transform: translateY(-55%);
   }
 
   .site-nav label[for="nav-trigger"] {
     display: block;
-    float: right;
     width: 36px;
-    height: 36px;
     z-index: 2;
     cursor: pointer; 
   }
 
   .site-nav .menu-icon {
     display: block;
-    float: right;
-    width: 36px;
-    height: 26px;
     line-height: 0;
-    padding-top: 10px;
     text-align: center; 
   }
 
-  .site-nav .menu-icon > svg path {
-    fill: #424242; 
+  .fa-bars {
+    color: #7d7d7d;
   }
 
-  .site-nav input ~ .trigger {
-    clear: both;
-    display: none; 
-  }
+}
 
-  .site-nav input:checked ~ .trigger {
-    display: block;
-    padding-bottom: 5px; 
-  }
+.mobile-menu {
+  position: fixed;
+  width: 100%;
+  margin-top: 57px;
+  right: -100%;
+}
 
-  .site-nav .page-link {
-    display: block;
-    padding: 5px 10px;
-    margin-left: 20px; 
-  }
+.mobile-menu .nav-links {
+  margin: 0;
+}
 
-  .site-nav .page-link:not(:last-child) {
-    margin-right: 0; 
-  }
+.mobile-menu__item {
+  display: block;
+  padding: 0;
+  border-bottom: 1px solid #dadada;
+  background-color: white;
+  line-height: 1.6;
+}
 
+.mobile-menu__item.active {
+  background-color: #eee;
+}
+
+.mobile-menu__link {
+  text-align: center;
+  font-size: 1.125rem;
+  display: block;
+  padding: 1rem 2.0625rem;
+}
+
+.menu-open {
+  right: 0;
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+  -ms-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+@media (max-width: $small-up) {
+  .nav-links {
+    display: none;
+  }
 }
