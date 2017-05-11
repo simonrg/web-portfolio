@@ -84,7 +84,10 @@ function cloudinaryAPI() {
 		crossDomain: true,
 		success: function(data) {
 			var images = [];
+			var pages = [];
+			var perpage = 9;
 
+			//get uploaded images
 			for(var i = 0; i < data.resources.length; i++) {
 				var path = data.resources[i].public_id + '.' + data.resources[i].format;
 
@@ -92,6 +95,18 @@ function cloudinaryAPI() {
 					path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
 			}
 
+			//calculate number of pagers to cycle through gallery
+			if(data.resources.length >= perpage) {
+				var total = data.resources.length;
+				var pager = total / perpage;
+
+				for(var k = 2; k < Math.ceil(pager)+1; k++) {
+					pages.push('<a href="#">' + k + '</a>');
+				}
+
+				$('.pager-collection').append(pages);
+			}
+			
 			$('.gallery-table').append(images);
 		},
 		error: function() {
