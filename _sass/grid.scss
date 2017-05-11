@@ -52,7 +52,7 @@
 		width: 48%;
 		margin-left: 0;
 
-		&:nth-child(3) {
+		&:nth-child(odd) {
 			clear: both;
 		}
 
