@@ -86,8 +86,8 @@ function cloudinaryAPI() {
 			for(var i = 0; i < data.resources.length; i++) {
 				var path = data.resources[i].public_id + '.' + data.resources[i].format;
 
-				$('.gallery-table').append('<div class="col span_1_of_3"><a data-fancybox="gallery" href="https://res.cloudinary.com/dvzk8xiff/image/upload/v1494158321/' + 
-					path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/v1494158321/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
+				$('.gallery-table').append('<div class="col span_1_of_3"><a data-fancybox="gallery" href="https://res.cloudinary.com/dvzk8xiff/image/upload/' + 
+					path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
 			}
 		},
 		error: function() {
