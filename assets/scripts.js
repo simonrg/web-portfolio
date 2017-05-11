@@ -101,7 +101,7 @@ function cloudinaryAPI() {
 				var pager = total / perpage;
 
 				for(var k = 2; k < Math.ceil(pager)+1; k++) {
-					pages.push('<a href="#">' + k + '</a>');
+					pages.push('<li class="pager"><a href="?page=' + k + '">' + k + '</a></li>');
 				}
 
 				$('.pager-collection').append(pages);
