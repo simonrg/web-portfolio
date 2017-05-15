@@ -86,14 +86,33 @@ function cloudinaryAPI() {
 			var images = [];
 			var pages = [];
 			var perpage = 9;
+			var container = 0;
 
 			//get uploaded images
 			for(var i = 0; i < data.resources.length; i++) {
 				var path = data.resources[i].public_id + '.' + data.resources[i].format;
 
+				if((i % perpage === 0) && (i !== 0))
+					images.push('</div>');
+
+				if(i % perpage === 0) {
+					
+					if(i === 0)
+						images.push('<div class="gallery-table__container container-page-' + container + '">');
+					else
+						images.push('<div class="gallery-table__container gallery-table__container--hidden container-page-' + container + '">');
+
+					container++;
+				}
+
 				images.push('<div class="col span_1_of_3"><a data-fancybox="gallery" href="https://res.cloudinary.com/dvzk8xiff/image/upload/' + 
 					path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
+
 			}
+			images.push('</div>');
+
+			$('.gallery-table').append(images.join(''));
+
 
 			//calculate number of pagers to cycle through gallery
 			if(data.resources.length >= perpage) {
@@ -106,8 +125,6 @@ function cloudinaryAPI() {
 
 				$('.pager-collection').append(pages);
 			}
-			
-			$('.gallery-table').append(images);
 		},
 		error: function() {
 			console.log('The requested resources could not be loaded.');
