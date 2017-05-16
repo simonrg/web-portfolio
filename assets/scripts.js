@@ -85,7 +85,7 @@ function cloudinaryAPI() {
 		success: function(data) {
 			var images = [];
 			var pages = [];
-			var perpage = 9;
+			var perpage = 6;
 			var container = 0;
 
 			//get uploaded images
@@ -98,9 +98,9 @@ function cloudinaryAPI() {
 				if(i % perpage === 0) {
 					
 					if(i === 0)
-						images.push('<div class="gallery-table__container gallery-table__container--active container-page-' + container + '">');
+						images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--active">');
 					else
-						images.push('<div class="gallery-table__container gallery-table__container--hidden container-page-' + container + '">');
+						images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--hidden">');
 
 					container++;
 				}
@@ -135,32 +135,38 @@ function cloudinaryAPI() {
 }
 
 function pagerNav() {
-	var current = $('.gallery-table__container--active').attr('class').split(' ').pop();
-
-	//add prev and next classes to the immediate siblings
-	//update everytime the active page changes
+	var current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 	$('.' + current).next().addClass('next');
-	$('.' + current).prev().addClass('prev');
+	//$('.' + current).prev().addClass('prev');
+
 
 	//listeners for button events
-	// $('.page-prev').on('click', function(e){
-	// 	e.preventDefault();
+	$('.page-prev').on('click', function(e){
+		e.preventDefault();
 
-	// 	$('.gallery-table__container--active').addClass('next');
-	// });
+		if(!$('.gallery-table__container--active').prev().length)
+			return;
+
+		$('.' + current).addClass('next gallery-table__container--hidden');
+
+		//transition former 'prev' becomes 'current'
+		$('.gallery-table__container--active').prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
+		$('.' + current).removeClass('gallery-table__container--active');
+		current = $('.gallery-table__container--active').attr('class').split(' ')[1];
+	});
 
 	$('.page-next').on('click', function(e){
 		e.preventDefault();
 
-		//current class goes out of frame to the left
-		$('.' + current).addClass('prev');
+		if(!$('.gallery-table__container--active').next().length)
+			return;
 
-		//transition former 'next' becomes 'current'
-		$('.gallery-table__container--active').next().addClass('gallery-table__container--active').removeClass('next');
+		//current class becomes previous, next class becomes current
+		$('.' + current).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
 
-		setTimeout(function(){ 
-			$('.' + current).addClass('gallery-table__container--hidden').removeClass('gallery-table__container--active');
-			$('.' + current).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden');
-		}, 2000);
+		//update current active element
+		$('.' + current).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
+		$('.gallery-table__container--active').next().addClass('next');
+		current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 	});
 }
