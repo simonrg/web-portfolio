@@ -91,29 +91,35 @@
 
 .gallery-table {
 	overflow: hidden;
+	position: relative;
 }
 
 .gallery-table__container {
-    position: relative;
-    left: 0;
+	display: inline-block;
+    position: inherit;
     overflow: auto;
+	width: 100%;
+}
+
+.gallery-table__container--active {
+    left: 0;
 }
 
 .gallery-table__container--hidden {
-	left: -100%;
 	position: absolute;
 }
 
-.slide-left {
+.prev {
 	left: -100%;
 }
 
-.slide-right {
+.next {
 	left: 100%;
 }
 
-.slide-left,
-.slide-right {
+.gallery-table__container--active,
+.prev,
+.next {
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;

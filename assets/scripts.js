@@ -98,7 +98,7 @@ function cloudinaryAPI() {
 				if(i % perpage === 0) {
 					
 					if(i === 0)
-						images.push('<div class="gallery-table__container container-page-' + container + '">');
+						images.push('<div class="gallery-table__container gallery-table__container--active container-page-' + container + '">');
 					else
 						images.push('<div class="gallery-table__container gallery-table__container--hidden container-page-' + container + '">');
 
@@ -125,9 +125,42 @@ function cloudinaryAPI() {
 
 				$('.pager-collection').append(pages);
 			}
+
+			pagerNav();
 		},
 		error: function() {
 			console.log('The requested resources could not be loaded.');
 		}
+	});
+}
+
+function pagerNav() {
+	var current = $('.gallery-table__container--active').attr('class').split(' ').pop();
+
+	//add prev and next classes to the immediate siblings
+	//update everytime the active page changes
+	$('.' + current).next().addClass('next');
+	$('.' + current).prev().addClass('prev');
+
+	//listeners for button events
+	// $('.page-prev').on('click', function(e){
+	// 	e.preventDefault();
+
+	// 	$('.gallery-table__container--active').addClass('next');
+	// });
+
+	$('.page-next').on('click', function(e){
+		e.preventDefault();
+
+		//current class goes out of frame to the left
+		$('.' + current).addClass('prev');
+
+		//transition former 'next' becomes 'current'
+		$('.gallery-table__container--active').next().addClass('gallery-table__container--active').removeClass('next');
+
+		setTimeout(function(){ 
+			$('.' + current).addClass('gallery-table__container--hidden').removeClass('gallery-table__container--active');
+			$('.' + current).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden');
+		}, 2000);
 	});
 }
