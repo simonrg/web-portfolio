@@ -1,18 +1,21 @@
 var page = $(location).attr('pathname').replace(/\//g, '');
-if(page.includes('draft')) {
-	cloudinaryAPI();
-}
+
+if(page === '') { page = 'home'; }
+if(page.includes('draft')) { cloudinaryAPI(); }
+
+
 
 $(document).ready(function(){
 
 	if(navigator.userAgent.indexOf("Mobile") > -1)
 		toggleMobileMenu();
 
-	footerYear();
-
-	homepageBanner();
+	if(page.includes('home'))
+		homepageBanner();
 
 	formValidation();
+
+	footerYear();
 });
 
 
@@ -25,7 +28,7 @@ function toggleMobileMenu() {
 			$('.mobile-menu__item:eq(' + i + ')').addClass('active');
 			continue;
 		}
-		else if(page === '') {	//homepage is just base url
+		else if(page === 'home') {
 			$('.mobile-menu__item:eq(0)').addClass('active');
 			continue;
 		}
