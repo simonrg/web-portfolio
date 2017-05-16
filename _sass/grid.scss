@@ -89,13 +89,14 @@
     display: table;
 	overflow: hidden;
 	position: relative;
+	width: 100%;
 }
 
 .gallery-table__container {
 	display: inline-block;
     position: inherit;
     overflow: auto;
-	width: 100%;
+	width: inherit;
 }
 
 .gallery-table__container--active {
