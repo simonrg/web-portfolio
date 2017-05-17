@@ -1,6 +1,6 @@
 var page = $(location).attr('pathname').replace(/\//g, '');
 
-if(page === '') { page = 'home'; }
+if(page === '' || 'web-portfolio') { page = 'home'; }
 if(page.includes('draft')) { cloudinaryAPI(); }
 
 
