@@ -86,7 +86,7 @@ function cloudinaryAPI() {
 			var images = [];
 			var pages = [];
 			var perpage = 6;
-			var container = 0;
+			var container = 1;
 
 			//get uploaded images
 			for(var i = 0; i < data.resources.length; i++) {
@@ -120,7 +120,7 @@ function cloudinaryAPI() {
 				var pager = total / perpage;
 
 				for(var k = 2; k < Math.ceil(pager)+1; k++) {
-					pages.push('<li class="pager"><a href="?page=' + k + '">' + k + '</a></li>');
+					pages.push('<li class="pager page"><a href="?page=' + k + '">' + k + '</a></li>');
 				}
 
 				$('.pager-collection').append(pages);
@@ -162,5 +162,29 @@ function pagerNav() {
 		$('.' + current).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
 
 		current = $('.gallery-table__container--active').attr('class').split(' ')[1];
+	});
+
+	$('.page').on('click', function(e){
+		e.preventDefault();
+
+		var page = parseInt($(this).text());
+		var onpage = parseInt(current.substring(current.lastIndexOf('-') + 1));
+
+		//animation direction depends on if desination page is before or after the current page
+		if(page > onpage) {
+			//swipes left
+			for(var i = onpage; i < page; i++){
+				$('.container-page-' + i).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
+				$('.container-page-' + i).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
+			}
+			current = $('.gallery-table__container--active').attr('class').split(' ')[1];
+		} else if(page < onpage) {
+			//swipes right
+			for(var k = onpage; k > page; k--){
+				$('.container-page-' + k).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
+				$('.container-page-' + k).prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
+			}
+			current = $('.gallery-table__container--active').attr('class').split(' ')[1];
+		}
 	});
 }
