@@ -100,7 +100,7 @@ function cloudinaryAPI() {
 					if(i === 0)
 						images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--active">');
 					else
-						images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--hidden">');
+						images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--hidden next">');
 
 					container++;
 				}
@@ -136,9 +136,6 @@ function cloudinaryAPI() {
 
 function pagerNav() {
 	var current = $('.gallery-table__container--active').attr('class').split(' ')[1];
-	$('.' + current).next().addClass('next');
-	//$('.' + current).prev().addClass('prev');
-
 
 	//listeners for button events
 	$('.page-prev').on('click', function(e){
@@ -146,12 +143,11 @@ function pagerNav() {
 
 		if(!$('.gallery-table__container--active').prev().length)
 			return;
+		
+		//current element becomes next, next element becomes current
+		$('.' + current).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
+		$('.' + current).prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
 
-		$('.' + current).addClass('next gallery-table__container--hidden');
-
-		//transition former 'prev' becomes 'current'
-		$('.gallery-table__container--active').prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
-		$('.' + current).removeClass('gallery-table__container--active');
 		current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 	});
 
@@ -161,12 +157,10 @@ function pagerNav() {
 		if(!$('.gallery-table__container--active').next().length)
 			return;
 
-		//current class becomes previous, next class becomes current
+		//current element becomes previous, next element becomes current
 		$('.' + current).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
-
-		//update current active element
 		$('.' + current).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
-		$('.gallery-table__container--active').next().addClass('next');
+
 		current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 	});
 }
