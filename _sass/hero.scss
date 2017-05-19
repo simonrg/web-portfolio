@@ -27,6 +27,10 @@
     display: inline-block;
     margin-right: -5px;
     margin-top: -3px;
+
+    &:nth-child(odd) {
+        background-color: #888888;
+    }
 }
 
 .image-preview {
@@ -38,6 +42,15 @@
     width: 100%;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+.image-preview--none {
+    display: table-cell;
+    height: inherit;
+    width: inherit;
+    vertical-align: middle;
+    text-align: center;
+    color: #4c4c4c;
 }
 
 .site-hero__button {

@@ -11,9 +11,11 @@
   <ul class="showcase">
 	{% for image in site.static_files %}
 		{% assign loopindex = forloop.index %}
-	  {% if image.path contains 'assets/art' %}
-	    <li class="showcase__item"><div class="image-preview" style="background-image: url('{{ site.baseurl }}{{ image.path }}');"></div></li>
-	  {% endif %}
+		{% if image.path contains 'assets/art' %}
+			<li class="showcase__item"><div class="image-preview" style="background-image: url('{{ site.baseurl }}{{ image.path }}');"></div></li>
+		{% else %}
+			<li class="showcase__item"><div class="image-preview--none"><i class="fa fa-file-image-o fa-2x" aria-hidden="true"></i></div></li>
+	  	{% endif %}
 		{% if loopindex == 65 %}
 			{% break %}
 		{% endif %}
