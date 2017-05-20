@@ -199,5 +199,9 @@ function pagerNav() {
 			}
 			current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 		}
+
+		//set new active class to clicked page
+		$('.page-active').removeClass('page-active');
+		$(this).find('a').addClass('page-active');
 	});
 }
