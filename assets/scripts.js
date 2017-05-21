@@ -123,7 +123,7 @@ function cloudinaryAPI() {
 				var pager = total / perpage;
 
 				for(var k = 2; k < Math.ceil(pager)+1; k++) {
-					pages.push('<li class="pager page"><a href="?page=' + k + '">' + k + '</a></li>');
+					pages.push('<li class="pager page"><a href="?page=' + k + '" class="hover-page">' + k + '</a></li>');
 				}
 
 				$('.pager-collection').append(pages);
@@ -139,6 +139,7 @@ function cloudinaryAPI() {
 
 function pagerNav() {
 	var current = $('.gallery-table__container--active').attr('class').split(' ')[1];
+	var pages = $('.pager-collection').children().length;
 
 	//listeners for button events
 	$('.page-prev').on('click', function(e){
@@ -157,6 +158,13 @@ function pagerNav() {
 		//decrement active page style
 		$('.page-active').parent().prev().children().addClass('page-active');
 		active.removeClass('page-active');
+	    
+	    if(current === 'container-page-1')
+        	$(this).removeClass('hover-page');
+    	else if(!$(this).hasClass('hover-page'))
+        	$(this).addClass('hover-page');
+
+        if($('.page-active').parent().next().length) { $('.page-next').addClass('hover-page'); }
 	});
 
 	$('.page-next').on('click', function(e){
@@ -175,6 +183,13 @@ function pagerNav() {
 		//increment active page style
 		$('.page-active').parent().next().children().addClass('page-active');
 		active.removeClass('page-active');
+
+		if(current === 'container-page-' + pages)
+        	$(this).removeClass('hover-page');
+    	else if(!$(this).hasClass('hover-page'))
+        	$(this).addClass('hover-page');
+
+    	if($('.page-active').parent().prev().length) { $('.page-prev').addClass('hover-page'); }
 	});
 
 	$('.page').on('click', function(e){
@@ -203,5 +218,18 @@ function pagerNav() {
 		//set new active class to clicked page
 		$('.page-active').removeClass('page-active');
 		$(this).find('a').addClass('page-active');
+
+		if(!$('.gallery-table__container--active').next().length) {
+			$('.page-next').removeClass('hover-page');
+			$('.page-prev').addClass('hover-page');
+		}
+		else if(!$('.gallery-table__container--active').prev().length) {
+			$('.page-prev').removeClass('hover-page');
+			$('.page-next').addClass('hover-page');
+		}
+		else {
+			$('.page-prev').addClass('hover-page');
+			$('.page-next').addClass('hover-page');
+		}
 	});
 }
