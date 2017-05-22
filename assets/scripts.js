@@ -90,7 +90,12 @@ function cloudinaryAPI(media) {
 
 			switch(media) {
 				case "banner":
-					var previews = 65;
+					var previews;
+
+					if(navigator.userAgent.indexOf("Mobile") > -1)
+						previews = 10;
+					else
+						previews = 65;
 
 					for(var k = 0; k < previews; k++) {
 						if(data.resources[k]) {
