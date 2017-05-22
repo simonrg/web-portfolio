@@ -1,8 +1,8 @@
 var page = $(location).attr('pathname').replace(/\//g, '');
 
 if(page === '' || page === 'web-portfolio') { page = 'home'; }
-if(page.includes('draft')) { cloudinaryAPI(); }
-
+if(page.includes('draft')) { cloudinaryAPI('sketch'); }
+if(page === 'home') { cloudinaryAPI('banner'); }
 
 
 $(document).ready(function(){
@@ -80,56 +80,82 @@ function formValidation() {
 	});
 }
 
-function cloudinaryAPI() {
+function cloudinaryAPI(media) {
 	$.ajax({
 		type: "GET",
-		url: 'https://res.cloudinary.com/dvzk8xiff/image/list/sketch.json',
+		url: 'https://res.cloudinary.com/dvzk8xiff/image/list/' + media + '.json',
 		crossDomain: true,
 		success: function(data) {
 			var images = [];
-			var pages = [];
-			var perpage = 6;
-			var container = 1;
 
-			//get uploaded images
-			for(var i = 0; i < data.resources.length; i++) {
-				var path = data.resources[i].public_id + '.' + data.resources[i].format;
+			switch(media) {
+				case "banner":
+					var previews = 65;
 
-				if((i % perpage === 0) && (i !== 0))
+					for(var k = 0; k < previews; k++) {
+						if(data.resources[k]) {
+							var path = data.resources[k].public_id + '.' + data.resources[k].format;
+							images.push('<li class="showcase__item"><div class="image-preview" style="background-image: url(https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + ');"></div></li>');
+						}
+						else {
+							images.push('<li class="showcase__item"><div class="image-preview--none"><i class="fa fa-file-image-o fa-2x" aria-hidden="true"></i></div></li>');
+						}
+					}
+
+					if($('.showcase')) { $('.showcase').append(images.join('')) };
+
+					break;
+
+				case "sketch":
+					var pages = [];
+					var perpage = 6;
+					var container = 1;
+
+					//get uploaded images
+					for(var i = 0; i < data.resources.length; i++) {
+						var path = data.resources[i].public_id + '.' + data.resources[i].format;
+
+						if((i % perpage === 0) && (i !== 0))
+							images.push('</div>');
+
+						if(i % perpage === 0) {
+							
+							if(i === 0)
+								images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--active">');
+							else
+								images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--hidden next">');
+
+							container++;
+						}
+
+						images.push('<div class="col span_1_of_3"><a data-fancybox="gallery" href="https://res.cloudinary.com/dvzk8xiff/image/upload/' + 
+							path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
+
+					}
 					images.push('</div>');
 
-				if(i % perpage === 0) {
-					
-					if(i === 0)
-						images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--active">');
-					else
-						images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--hidden next">');
+					$('.gallery-table').append(images.join(''));
 
-					container++;
-				}
 
-				images.push('<div class="col span_1_of_3"><a data-fancybox="gallery" href="https://res.cloudinary.com/dvzk8xiff/image/upload/' + 
-					path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
+					//calculate number of pagers to cycle through gallery
+					if(data.resources.length >= perpage) {
+						var total = data.resources.length;
+						var pager = total / perpage;
 
+						for(var k = 2; k < Math.ceil(pager)+1; k++) {
+							pages.push('<li class="pager page"><a href="?page=' + k + '" class="hover-page">' + k + '</a></li>');
+						}
+
+						$('.pager-collection').append(pages);
+					}
+
+					pagerNav();
+
+					break;
+
+				default: 
+					break;
 			}
-			images.push('</div>');
-
-			$('.gallery-table').append(images.join(''));
-
-
-			//calculate number of pagers to cycle through gallery
-			if(data.resources.length >= perpage) {
-				var total = data.resources.length;
-				var pager = total / perpage;
-
-				for(var k = 2; k < Math.ceil(pager)+1; k++) {
-					pages.push('<li class="pager page"><a href="?page=' + k + '" class="hover-page">' + k + '</a></li>');
-				}
-
-				$('.pager-collection').append(pages);
-			}
-
-			pagerNav();
 		},
 		error: function() {
 			console.log('The requested resources could not be loaded.');

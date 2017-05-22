@@ -34,14 +34,11 @@
 }
 
 .image-preview {
-    // max-width: 100%;
-    // max-height: 100%;
-    // margin: 0;
-    // vertical-align: top;
     height: 100%;
     width: 100%;
-    background-position: center center;
+    background-position: 55% 20%;
     background-repeat: no-repeat;
+    zoom: 50%;
 }
 
 .image-preview--none {
@@ -112,7 +109,7 @@
     font-size: 28px;
 }
 
-@media (min-width: 1620px) and (max-width: 1913px) {//293
+@media (min-width: 1620px) {
     .showcase {
         -moz-column-count:    13;
         -webkit-column-count: 13;
