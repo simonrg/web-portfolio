@@ -138,65 +138,31 @@ function cloudinaryAPI() {
 }
 
 function pagerNav() {
-	var current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 	var pages = $('.pager-collection').children().length;
 
-	//listeners for button events
 	$('.page-prev').on('click', function(e){
 		e.preventDefault();
-		var active = $('.page-active');
 
-		if(!$('.gallery-table__container--active').prev().length)
+		if(!toggleNextPrev(this, 'prev', pages))
 			return;
-		
-		//current element becomes next, next element becomes current
-		$('.' + current).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
-		$('.' + current).prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
 
-		current = $('.gallery-table__container--active').attr('class').split(' ')[1];
-
-		//decrement active page style
-		$('.page-active').parent().prev().children().addClass('page-active');
-		active.removeClass('page-active');
-	    
-	    if(current === 'container-page-1')
-        	$(this).removeClass('hover-page');
-    	else if(!$(this).hasClass('hover-page'))
-        	$(this).addClass('hover-page');
-
-        if($('.page-active').parent().next().length) { $('.page-next').addClass('hover-page'); }
+		if(!$('.page-next').hasClass('hover-page')) { $('.page-next').addClass('hover-page'); }
 	});
 
 	$('.page-next').on('click', function(e){
 		e.preventDefault();
-		var active = $('.page-active');
 
-		if(!$('.gallery-table__container--active').next().length)
+		if(!toggleNextPrev(this, 'next', pages))
 			return;
 
-		//current element becomes previous, next element becomes current
-		$('.' + current).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
-		$('.' + current).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
-
-		current = $('.gallery-table__container--active').attr('class').split(' ')[1];
-
-		//increment active page style
-		$('.page-active').parent().next().children().addClass('page-active');
-		active.removeClass('page-active');
-
-		if(current === 'container-page-' + pages)
-        	$(this).removeClass('hover-page');
-    	else if(!$(this).hasClass('hover-page'))
-        	$(this).addClass('hover-page');
-
-    	if($('.page-active').parent().prev().length) { $('.page-prev').addClass('hover-page'); }
+		if(!$('.page-prev').hasClass('hover-page')) { $('.page-prev').addClass('hover-page'); }
 	});
 
 	$('.page').on('click', function(e){
 		e.preventDefault();
 
 		var page = parseInt($(this).text());
-		var onpage = parseInt(current.substring(current.lastIndexOf('-') + 1));
+		var onpage = parseInt($('.page-active').text());
 
 		//animation direction depends on if desination page is before or after the current page
 		if(page > onpage) {
@@ -205,14 +171,12 @@ function pagerNav() {
 				$('.container-page-' + i).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
 				$('.container-page-' + i).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
 			}
-			current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 		} else if(page < onpage) {
 			//swipes right
 			for(var k = onpage; k > page; k--){
 				$('.container-page-' + k).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
 				$('.container-page-' + k).prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
 			}
-			current = $('.gallery-table__container--active').attr('class').split(' ')[1];
 		}
 
 		//set new active class to clicked page
@@ -228,8 +192,39 @@ function pagerNav() {
 			$('.page-next').addClass('hover-page');
 		}
 		else {
-			$('.page-prev').addClass('hover-page');
-			$('.page-next').addClass('hover-page');
+			$('.page-prev, .page-next').addClass('hover-page');
 		}
 	});
+}
+
+function toggleNextPrev(btn, direction, pages) {
+	var active = $('.page-active');
+	var current = $('.gallery-table__container--active');
+
+	//cant go forward or back anymore
+	if((!current.prev().length && direction === 'prev') || (!current.next().length && direction === 'next'))
+		return false;
+
+	//increment or decrement depending on direction
+	if(direction === 'prev') {
+		current.addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
+		current.prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
+		active.parent().prev().children().addClass('page-active');
+	}
+	else {
+		current.addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
+		current.next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
+		active.parent().next().children().addClass('page-active');
+	}
+	current = $('.gallery-table__container--active');	//update current (visible) container
+	active.removeClass('page-active');
+
+	//pagination next prev styling
+	//remove hoverable state if no more pages in either direction
+	if(current.attr('class').includes('container-page-1') || current.attr('class').includes('container-page-' + pages))
+		$(btn).removeClass('hover-page');
+	else if(!$(btn).hasClass('hover-page'))
+		$(btn).addClass('hover-page');
+
+	return true;
 }
