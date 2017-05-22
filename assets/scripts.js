@@ -2,7 +2,6 @@ var page = $(location).attr('pathname').replace(/\//g, '');
 
 if(page === '' || page === 'web-portfolio') { page = 'home'; }
 if(page.includes('draft')) { cloudinaryAPI('sketch'); }
-if(page === 'home') { cloudinaryAPI('banner'); }
 
 
 $(document).ready(function(){
@@ -10,8 +9,10 @@ $(document).ready(function(){
 	if(navigator.userAgent.indexOf("Mobile") > -1)
 		toggleMobileMenu();
 
-	if(page.includes('home'))
+	if(page.includes('home')) {
 		homepageBanner();
+        cloudinaryAPI('banner');
+	}
 
 	formValidation();
 
@@ -93,9 +94,9 @@ function cloudinaryAPI(media) {
 					var previews;
 
 					if(navigator.userAgent.indexOf("Mobile") > -1)
-						previews = 10;
+						previews = 6;
 					else
-						previews = 65;
+						previews = 40;
 
 					for(var k = 0; k < previews; k++) {
 						if(data.resources[k]) {
@@ -107,7 +108,7 @@ function cloudinaryAPI(media) {
 						}
 					}
 
-					if($('.showcase')) { $('.showcase').append(images.join('')) };
+					if($('.site-hero')) { $('.site-hero').append('<ul class="showcase">' + images.join('') + '</ul>'); }
 
 					break;
 
