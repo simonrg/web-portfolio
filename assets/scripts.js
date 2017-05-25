@@ -94,9 +94,9 @@ function cloudinaryAPI(media) {
 					var previews;
 
 					if(navigator.userAgent.indexOf("Mobile") > -1)
-						previews = 6;
+						previews = 4;
 					else
-						previews = 40;
+						previews = 36;
 
 					for(var k = 0; k < previews; k++) {
 						if(data.resources[k]) {
