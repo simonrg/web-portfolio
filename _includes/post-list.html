@@ -1,11 +1,11 @@
 <div class="page-content__block">
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
+      <li class="post-list__item">
         <h3 class="blog-heading">{{ post.title }}</h3>
         <span class="post-meta">{{ post.date | date: "%B %e, %Y" }}</span>
-        <p class="blog-excerpt">{{ post.excerpt }}</p>
-        <p><a href="{{ post.url }}">Read more ></a></p>
+        <p class="blog-excerpt">{{ post.excerpt | remove: '<p>' | remove: '</p>' }}</p>
+        <a href="{{ post.url }}">Read more ></a>
       </li>
     {% endfor %}
   </ul>
