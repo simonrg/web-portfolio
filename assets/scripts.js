@@ -180,6 +180,7 @@ function renderGrid(data, perpage) {
 
 function pagerNav() {
 	var pages = $('.pager-collection').children().length;
+	$('.navigation-pager').css('display', 'block');
 
 	$('.page-prev').on('click', function(e){
 		e.preventDefault();
