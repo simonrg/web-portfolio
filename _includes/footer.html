@@ -8,12 +8,14 @@
         <p class="footer-text">If you'd like to get in touch, just send me a message.</p>
         <form action="https://formspree.io/{{ site.email }}" method="POST">
           <div class="form-field__container">
-            <div class="form-field__container-item"><label class="form-field__label" for="name">Name:</label><input type="text" name="name" class="form-field__item" placeholder="">
+            <div class="form-field__container-item">
+            <label class="form-field__label" for="name-form">Name:</label><input type="text" name="name" class="form-field__item" id="name-form">
             </div>
-            <div class="form-field__container-item"><label class="form-field__label" for="email">Email:</label><input type="email" name="_replyto" class="form-field__item" placeholder="example@domain.com"></div>
+            <div class="form-field__container-item">
+            <label class="form-field__label" for="email-form">Email:</label><input type="email" name="email" class="form-field__item" id="email-form" placeholder="example@domain.com"></div>
           </div>
-          <label class="form-field__label" for="message">Message:</label>
-          <textarea type="text" name="message" id="message" class="form-field__item contact-text" placeholder="" tabindex="1"></textarea>
+          <label class="form-field__label" for="message-form">Message:</label>
+          <textarea type="text" name="message" id="message-form" class="form-field__item contact-text" placeholder="" tabindex="1"></textarea>
           <input type="submit" value="Send" class="submit-btn submit-btn--disabled" disabled>
         </form>
       </div>
