@@ -8,7 +8,7 @@
         <span class="post-meta">{{ post.date | date: "%B %e, %Y" }}</span>
         <p class="blog-excerpt">{{ post.excerpt | remove: '<p>' | remove: '</p>' }}</p>
         {% if full > sample %}
-          <a class="blog-readmore" href="{{ post.url }}">Read more ></a>
+          <a class="blog-readmore" href="{{ site.baseurl | append: post.url }}">Read more ></a>
         {% endif %}
       </li>
     {% endfor %}
