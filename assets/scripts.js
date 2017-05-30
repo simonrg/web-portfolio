@@ -185,6 +185,8 @@ function renderGrid(data, perpage, gallery) {
 
 function pagerNav(gallery) {
 	var pages = $('.navigation-pager__' + gallery + ' .pager-collection').children().length;
+	var next = $('.navigation-pager__' + gallery + ' .page-next');
+	var prev = $('.navigation-pager__' + gallery + ' .page-prev');
 
 	$('.page-prev').on('click', function(e){
 		e.preventDefault();
@@ -192,7 +194,7 @@ function pagerNav(gallery) {
 		if(!toggleNextPrev(this, 'prev', pages, gallery))
 			return;
 
-		if(!$('.page-next').hasClass('hover-page')) { $('.page-next').addClass('hover-page'); }
+		if(!next.hasClass('hover-page')) { next.addClass('hover-page'); }
 	});
 
 	$('.page-next').on('click', function(e){
@@ -201,7 +203,7 @@ function pagerNav(gallery) {
 		if(!toggleNextPrev(this, 'next', pages, gallery))
 			return;
 
-		if(!$('.page-prev').hasClass('hover-page')) { $('.page-prev').addClass('hover-page'); }
+		if(!prev.hasClass('hover-page')) { prev.addClass('hover-page'); }
 	});
 
 	$('.page').on('click', function(e){
@@ -209,8 +211,6 @@ function pagerNav(gallery) {
 
 		var page = parseInt($(this).text());
 		var onpage = parseInt($('.navigation-pager__' + gallery + ' .page-active').text());
-		var next = $('.navigation-pager__' + gallery + ' .page-next');
-		var prev = $('.navigation-pager__' + gallery + ' .page-prev');
 
 		//animation direction depends on if desination page is before or after the current page
 		if(page > onpage) {
