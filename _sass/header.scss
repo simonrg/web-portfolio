@@ -3,11 +3,18 @@
  */
 .site-header {
   background-color: #242424;
-  min-height: 55.95px;
+  max-height: 55.95px;
   position: fixed;
   width: 100%;
   border-bottom: 1px solid #89B6A5;
   z-index: 99;
+  height: 100%;
+
+  @media (min-width: $small-up) {
+    min-height: 55.95px;
+    height: initial;
+    max-height: none;
+  }
 }
 
 .site-header + * {
