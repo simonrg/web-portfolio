@@ -1,7 +1,11 @@
 var page = $(location).attr('pathname').replace(/\//g, '');
 
 if(page === '' || page === 'web-portfolio') { page = 'home'; }
-if(page.includes('draft')) { cloudinaryAPI('sketch'); }
+if(page.includes('draft')) { 
+	$('.gallery-table').each(function(i, obj) {
+    	cloudinaryAPI(obj.className.split(' ')[0]);
+	});
+}
 
 
 $(document).ready(function(){
@@ -113,12 +117,12 @@ function cloudinaryAPI(media) {
 					break;
 
 				case "sketch":
-					renderGrid(data, 6);
+					renderGrid(data, 6, media);
 
 					break;
 
 				case "portrait":
-					renderGrid(data, 3);
+					renderGrid(data, 3, media);
 
 					break;
 
@@ -132,7 +136,7 @@ function cloudinaryAPI(media) {
 	});
 }
 
-function renderGrid(data, perpage) {
+function renderGrid(data, perpage, gallery) {
 	var images = [];
 	var pages = [];
 	var container = 1;
@@ -160,7 +164,7 @@ function renderGrid(data, perpage) {
 	}
 	images.push('</div>');
 
-	$('.gallery-table').append(images.join(''));
+	$('.' + gallery).append(images.join(''));
 
 
 	//calculate number of pages of images in the gallery
@@ -173,19 +177,19 @@ function renderGrid(data, perpage) {
 		}
 
 		$('.pager-collection').append(pages);
+		$('.' + gallery + ' + .navigation-pager').css('display', 'block');
 		
-		pagerNav();
+		pagerNav(gallery);
 	}
 }
 
-function pagerNav() {
-	var pages = $('.pager-collection').children().length;
-	$('.navigation-pager').css('display', 'block');
+function pagerNav(gallery) {
+	var pages = $('.navigation-pager__' + gallery + ' .pager-collection').children().length;
 
 	$('.page-prev').on('click', function(e){
 		e.preventDefault();
 
-		if(!toggleNextPrev(this, 'prev', pages))
+		if(!toggleNextPrev(this, 'prev', pages, gallery))
 			return;
 
 		if(!$('.page-next').hasClass('hover-page')) { $('.page-next').addClass('hover-page'); }
@@ -194,7 +198,7 @@ function pagerNav() {
 	$('.page-next').on('click', function(e){
 		e.preventDefault();
 
-		if(!toggleNextPrev(this, 'next', pages))
+		if(!toggleNextPrev(this, 'next', pages, gallery))
 			return;
 
 		if(!$('.page-prev').hasClass('hover-page')) { $('.page-prev').addClass('hover-page'); }
@@ -204,44 +208,46 @@ function pagerNav() {
 		e.preventDefault();
 
 		var page = parseInt($(this).text());
-		var onpage = parseInt($('.page-active').text());
+		var onpage = parseInt($('.navigation-pager__' + gallery + ' .page-active').text());
+		var next = $('.navigation-pager__' + gallery + ' .page-next');
+		var prev = $('.navigation-pager__' + gallery + ' .page-prev');
 
 		//animation direction depends on if desination page is before or after the current page
 		if(page > onpage) {
 			//swipes left
 			for(var i = onpage; i < page; i++){
-				$('.container-page-' + i).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
-				$('.container-page-' + i).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
+				$('.' + gallery + '> .container-page-' + i).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
+				$('.' + gallery + '> .container-page-' + i).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
 			}
 		} else if(page < onpage) {
 			//swipes right
 			for(var k = onpage; k > page; k--){
-				$('.container-page-' + k).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
-				$('.container-page-' + k).prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
+				$('.' + gallery + '> .container-page-' + k).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
+				$('.' + gallery + '> .container-page-' + k).prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
 			}
 		}
 
 		//set new active class to clicked page
-		$('.page-active').removeClass('page-active');
+		$('.navigation-pager__' + gallery + ' .page-active').removeClass('page-active');
 		$(this).find('a').addClass('page-active');
 
-		if(!$('.gallery-table__container--active').next().length) {
-			$('.page-next').removeClass('hover-page');
-			$('.page-prev').addClass('hover-page');
+		if(!$('.' + gallery + ' .gallery-table__container--active').next().length) {
+			next.removeClass('hover-page');
+			prev.addClass('hover-page');
 		}
-		else if(!$('.gallery-table__container--active').prev().length) {
-			$('.page-prev').removeClass('hover-page');
-			$('.page-next').addClass('hover-page');
+		else if(!$('.' + gallery + ' .gallery-table__container--active').prev().length) {
+			prev.removeClass('hover-page');
+			next.addClass('hover-page');
 		}
 		else {
-			$('.page-prev, .page-next').addClass('hover-page');
+			$('.navigation-pager__' + gallery + ' .page-prev, .navigation-pager__' + gallery + ' .page-next').addClass('hover-page');
 		}
 	});
 }
 
-function toggleNextPrev(btn, direction, pages) {
+function toggleNextPrev(btn, direction, pages, gallery) {
 	var active = $('.page-active');
-	var current = $('.gallery-table__container--active');
+	var current = $('.' + gallery + ' > .gallery-table__container--active');
 
 	//cant go forward or back anymore
 	if((!current.prev().length && direction === 'prev') || (!current.next().length && direction === 'next'))
@@ -258,7 +264,7 @@ function toggleNextPrev(btn, direction, pages) {
 		current.next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
 		active.parent().next().children().addClass('page-active');
 	}
-	current = $('.gallery-table__container--active');	//update current (visible) container
+	current = $('.' + gallery + ' > .gallery-table__container--active');	//update current (visible) container
 	active.removeClass('page-active');
 
 	//pagination next prev styling
