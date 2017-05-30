@@ -41,7 +41,7 @@ h2 {
 	width: 90%;
 	margin: auto;
 	display: table;
-	min-height: inherit;
+	height: inherit;
 }
 
 @media (min-width: $extra-large) {
@@ -51,8 +51,29 @@ h2 {
 	}
 }
 
+.page-content {
+	overflow: hidden;
+}
+
 .page-content__block {
 	padding: 40px 0;
+}
+
+.page-content__full-width-block {
+    background-color: #40285f;
+    margin: 0 -6%;
+
+    @media (min-width: $extra-large) {
+    	margin: 0 -34%;
+    }
+}
+
+.full-image__img {
+    width: 100%;
+    display: block;
+    margin: auto;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1, 1);
 }
 
 .link {
