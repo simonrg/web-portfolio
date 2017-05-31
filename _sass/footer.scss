@@ -86,20 +86,11 @@
 .form-field__container {
   display: table;
   width: 100%;
-  margin-bottom: 50px;
-
-  @media (min-width: $small-up) {
-    margin-bottom: 25px;
-  }
 }
 
 .form-field__container-item {
   display: inline-block;
   width: 100%;
-
-  &:first-child {
-    margin-bottom: 50px;
-  }
 
   @media (min-width: $small-up) {
     width: 47%;
@@ -119,7 +110,7 @@
   font-size: 22px;
 
   @media (min-width: $small-up) {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -129,26 +120,22 @@
 
 .form-field__item {
   border: 0;
-  background-color: transparent;
   color: #a7a7a7;
   font-family: inherit;
-  font-size: 18px;
-  padding: 15px 0;
+  font-size: inherit;
+  padding: 15px;
+  margin: 15px 0;
   border-bottom: 1px solid #5a5e61;
   width: 100%;
-
-  @media (min-width: $small-up) {
-    font-size: inherit;
-  }
+  background-color: #333333;
+  box-sizing: border-box;
 }
 
 .contact-text {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 100%;
   height: 130px;
-  margin: 15px 0;
   resize: none;
 
   @media (min-width: $small-up) {
@@ -157,15 +144,14 @@
 }
 
 .submit-btn {
-  padding: 10px;
+  padding: 15px;
   width: 100%;
   text-transform: uppercase;
   background-color: transparent;
   font-weight: bold;
 
   @media (max-width: $small-up) {
-    height: 50px;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 100;
   }
 }
@@ -227,7 +213,6 @@
 }
 
 .footer-text {
-  font-size: 18px;
   text-align: center;
 
   @media (min-width: $small-up) {

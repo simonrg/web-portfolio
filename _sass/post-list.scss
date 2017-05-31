@@ -2,7 +2,7 @@
  * Blog content
  */
 
-.blog-heading {
+.post-heading {
   font-size: 28px;
   margin: 16px 0;
 }
@@ -18,12 +18,27 @@
 }
 
 .post-meta {
-  font-size: 16px;
+  font-size: 20px;
   color: #828282;
   display: block;
+
+  @media (min-width: $medium-only) {
+    font-size: 18px;
+  }
 }
 
-.post-link {
-  display: block;
-  font-size: 24px;
+@media (max-width: $medium-only) {
+  .post-link {
+    border: 1px solid;
+    display: block;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  .post-link:active {
+    background-color: #57c5a0;
+    color: white;
+  }
 }
