@@ -9,8 +9,12 @@
 .col {
 	display: block;
 	float: left;
-	margin: 1% 0 1% 3%;
+	margin: 2% 0;
 	text-align: center;
+	-webkit-box-shadow: 25px 21px 43px -18px rgba(0,0,0,0.37);
+	-moz-box-shadow: 25px 21px 43px -18px rgba(0,0,0,0.37);
+	box-shadow: 25px 21px 43px -18px rgba(0,0,0,0.37);
+	background-color: white;
 }
 
 /*  GROUPING  */
@@ -39,7 +43,23 @@
 @media only screen and (min-width: $extra-large) {
 	.col:nth-child(3n+1) {
 		clear: both;
+		float: left;
+		margin-left: 2%;
 	}
+
+	.col:nth-child(3n+2) {
+	    margin-left: 2.5%;
+		margin-right: 2.5%;
+	}
+
+	.col:nth-child(3n) {
+		float: right;
+		margin-right: 2%;
+	}
+}
+
+.image-gallery {
+	border: 1px solid #5090A5;
 }
 
 .gallery__image {
@@ -51,21 +71,24 @@
 
 @media (min-width: $medium-only) and (max-width: $extra-large) {
 	.col {
-		width: 48%;
+		width: 45%;
 		margin-left: 0;
 
 		&:nth-child(odd) {
 			clear: both;
+			margin-left: 3%;
 		}
 
 		&:nth-child(even) {
-			margin-left: 3%;
+			margin-right: 3%;
+			float: right;
 		}
 	}
 }
 
 .navigation-pager {
 	display: none;
+	background-color: #7EB8CB;
 }
 
 .pagination {
@@ -107,6 +130,8 @@
 	overflow: hidden;
 	position: relative;
 	width: 100%;
+    background-color: lightblue;
+    box-sizing: border-box;
 }
 
 .gallery-table__container {

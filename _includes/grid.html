@@ -1,20 +1,21 @@
 <div class="page-content__block">
+	<div class="image-gallery">
+	
+		<div class="{{ gallery }} gallery-table gallery-table__{{ gallery }}" role="gallery"></div>
 
-	<div class="{{ gallery }} gallery-table gallery-table__{{ gallery }}" role="gallery">
+		<nav class="navigation-pager navigation-pager__{{ gallery }}" role="navigation">
+		  <ul class="pagination">
+		    <!-- <li><a href="?page=1" rel="first">First</a></li> -->
+		    <li class="pager"><a class="page-prev" href="#" rel="prev">&laquo;</a></li>
+
+		  	<div class="pager-collection">
+		    	<li class="pager page"><a href="?page=1" class="page-active hover-page">1</a></li>
+		  	</div>
+
+		    <li class="pager"><a class="page-next hover-page" href="#" rel="next">&raquo;</a></li>
+		    <!-- <li><a href="?page=5" rel="last">Last</a></li> -->
+		  </ul>
+		</nav>
+		
 	</div>
-
-	<nav class="navigation-pager navigation-pager__{{ gallery }}" role="navigation">
-	  <ul class="pagination">
-	    <!-- <li><a href="?page=1" rel="first">First</a></li> -->
-	    <li class="pager"><a class="page-prev" href="#" rel="prev">&laquo;</a></li>
-
-	  	<div class="pager-collection">
-	    	<li class="pager page"><a href="?page=1" class="page-active hover-page">1</a></li>
-	  	</div>
-
-	    <li class="pager"><a class="page-next hover-page" href="#" rel="next">&raquo;</a></li>
-	    <!-- <li><a href="?page=5" rel="last">Last</a></li> -->
-	  </ul>
-	</nav>
-
 </div>
