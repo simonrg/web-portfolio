@@ -40,14 +40,8 @@ function toggleMobileMenu() {
 	}
 
 	$('.nav-trigger').on('click', function(){
-		if($('.mobile-menu').hasClass('menu-open')) {
-			$('.mobile-menu').removeClass('menu-open');
-			$('body').removeClass('mobile-menu-open');
-		}
-		else {
-			$('.mobile-menu').addClass('menu-open');
-			$('body').addClass('mobile-menu-open');
-		}
+		$('.mobile-menu').toggleClass('menu-open');
+		$('body').toggleClass('mobile-menu-open');
 	});
 }
 
@@ -188,14 +182,25 @@ function renderGrid(data, perpage, gallery) {
 }
 
 function pagerNav(gallery) {
-	var pages = $('.navigation-pager__' + gallery + ' .pager-collection').children().length;
+	//image containers
+	var container = '.' + gallery + ' > .container-page-';
+
+	//navigation pages
 	var next = $('.navigation-pager__' + gallery + ' .page-next');
 	var prev = $('.navigation-pager__' + gallery + ' .page-prev');
+	var last = parseInt($('.page').last().text());
 
+	//updates when a new page is clicked
+	var current;
+	var clickedpage;
+	var page;
+	var onpage;
+
+	//event listeners navigation functionality
 	$('.page-prev').on('click', function(e){
 		e.preventDefault();
 
-		if(!toggleNextPrev(this, 'prev', pages, gallery))
+		if(!toggleNextPrev(this, 'prev', last, gallery))
 			return;
 
 		if(!next.hasClass('hover-page')) { next.addClass('hover-page'); }
@@ -204,7 +209,7 @@ function pagerNav(gallery) {
 	$('.page-next').on('click', function(e){
 		e.preventDefault();
 
-		if(!toggleNextPrev(this, 'next', pages, gallery))
+		if(!toggleNextPrev(this, 'next', last, gallery))
 			return;
 
 		if(!prev.hasClass('hover-page')) { prev.addClass('hover-page'); }
@@ -213,43 +218,48 @@ function pagerNav(gallery) {
 	$('.page').on('click', function(e){
 		e.preventDefault();
 
-		var page = parseInt($(this).text());
-		var onpage = parseInt($('.navigation-pager__' + gallery + ' .page-active').text());
+		//pagination buttons
+		current = $('.navigation-pager__' + gallery + ' .page-active');
+		clicked = $(this).find('a');
 
-		//animation direction depends on if desination page is before or after the current page
+		//is selected page before or after current page
+		page = parseInt($(this).text());
+		onpage = parseInt(current.text());
 		if(page > onpage) {
 			//swipes left
 			for(var i = onpage; i < page; i++){
-				$('.' + gallery + '> .container-page-' + i).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
-				$('.' + gallery + '> .container-page-' + i).next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
+				$(container + i).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active')
+					.next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
 			}
 		} else if(page < onpage) {
 			//swipes right
 			for(var k = onpage; k > page; k--){
-				$('.' + gallery + '> .container-page-' + k).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
-				$('.' + gallery + '> .container-page-' + k).prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
+				$(container + k).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active')
+					.prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
 			}
 		}
 
-		//set new active class to clicked page
-		$('.navigation-pager__' + gallery + ' .page-active').removeClass('page-active');
-		$(this).find('a').addClass('page-active');
+		//update active pagination buttons
+		current.removeClass('page-active');
+		clicked.addClass('page-active');
 
-		if(!$('.' + gallery + ' .gallery-table__container--active').next().length) {
+		//hover state updates based on position
+		if(page === last) {
 			next.removeClass('hover-page');
 			prev.addClass('hover-page');
 		}
-		else if(!$('.' + gallery + ' .gallery-table__container--active').prev().length) {
+		else if(page === 1) {
 			prev.removeClass('hover-page');
 			next.addClass('hover-page');
 		}
 		else {
-			$('.navigation-pager__' + gallery + ' .page-prev, .navigation-pager__' + gallery + ' .page-next').addClass('hover-page');
+			prev.addClass('hover-page');
+			next.addClass('hover-page');
 		}
 	});
 }
 
-function toggleNextPrev(btn, direction, pages, gallery) {
+function toggleNextPrev(btn, direction, last, gallery) {
 	var active = $('.page-active');
 	var current = $('.' + gallery + ' > .gallery-table__container--active');
 
@@ -273,10 +283,8 @@ function toggleNextPrev(btn, direction, pages, gallery) {
 
 	//pagination next prev styling
 	//remove hoverable state if no more pages in either direction
-	if(current.attr('class').includes('container-page-1') || current.attr('class').includes('container-page-' + pages))
-		$(btn).removeClass('hover-page');
-	else if(!$(btn).hasClass('hover-page'))
-		$(btn).addClass('hover-page');
+	if(current.attr('class').includes('container-page-1') || current.attr('class').includes('container-page-' + last))
+		$(btn).toggleClass('hover-page');
 
 	return true;
 }
