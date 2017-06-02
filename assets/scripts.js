@@ -220,10 +220,10 @@ function pagerNav(gallery) {
 
 		//pagination buttons
 		current = $('.navigation-pager__' + gallery + ' .page-active');
-		clicked = $(this).find('a');
+		clicked = $(this);
 
 		//is selected page before or after current page
-		page = parseInt($(this).text());
+		page = parseInt(clicked.text());
 		onpage = parseInt(current.text());
 		if(page > onpage) {
 			//swipes left
@@ -260,7 +260,7 @@ function pagerNav(gallery) {
 }
 
 function toggleNextPrev(btn, direction, last, gallery) {
-	var active = $('.page-active');
+	var active = $('.navigation-pager__' + gallery + ' .page-active');
 	var current = $('.' + gallery + ' > .gallery-table__container--active');
 
 	//cant go forward or back anymore
@@ -271,12 +271,12 @@ function toggleNextPrev(btn, direction, last, gallery) {
 	if(direction === 'prev') {
 		current.addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
 		current.prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
-		active.parent().prev().children().addClass('page-active');
+		active.prev().addClass('page-active');
 	}
 	else {
 		current.addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
 		current.next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
-		active.parent().next().children().addClass('page-active');
+		active.next().addClass('page-active');
 	}
 	current = $('.' + gallery + ' > .gallery-table__container--active');	//update current (visible) container
 	active.removeClass('page-active');

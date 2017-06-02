@@ -112,16 +112,11 @@
 	display: inline-block;
 }
 
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
 .hover-page:hover:not(.page-active) {
     cursor: pointer;
 }
 
-.page-active,
+.page-active a,
 .hover-page:hover { 
     background-color: #ddd;
 }
