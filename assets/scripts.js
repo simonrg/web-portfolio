@@ -40,10 +40,14 @@ function toggleMobileMenu() {
 	}
 
 	$('.nav-trigger').on('click', function(){
-		if($('.mobile-menu').hasClass('menu-open'))
+		if($('.mobile-menu').hasClass('menu-open')) {
 			$('.mobile-menu').removeClass('menu-open');
-		else 
+			$('body').removeClass('mobile-menu-open');
+		}
+		else {
 			$('.mobile-menu').addClass('menu-open');
+			$('body').addClass('mobile-menu-open');
+		}
 	});
 }
 
