@@ -189,7 +189,7 @@ function pagerNav(gallery) {
 	var page = $('.navigation-pager__' + gallery + ' .page');
 	var next = $('.navigation-pager__' + gallery + ' .page-next');
 	var prev = $('.navigation-pager__' + gallery + ' .page-prev');
-	var last = parseInt($('.page').last().text());
+	var last = parseInt(page.last().text());
 
 	//updates when a new page is clicked
 	var current;
