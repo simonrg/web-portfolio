@@ -174,7 +174,7 @@ function renderGrid(data, perpage, gallery) {
 			pages.push('<li class="pager page"><a href="?page=' + k + '" class="hover-page">' + k + '</a></li>');
 		}
 
-		$('.pager-collection').append(pages);
+		$('.navigation-pager__' + gallery + ' .pager-collection').append(pages);
 		$('.' + gallery + ' + .navigation-pager').css('display', 'block');
 		
 		pagerNav(gallery);
@@ -186,18 +186,18 @@ function pagerNav(gallery) {
 	var container = '.' + gallery + ' > .container-page-';
 
 	//navigation pages
+	var page = $('.navigation-pager__' + gallery + ' .page');
 	var next = $('.navigation-pager__' + gallery + ' .page-next');
 	var prev = $('.navigation-pager__' + gallery + ' .page-prev');
 	var last = parseInt($('.page').last().text());
 
 	//updates when a new page is clicked
 	var current;
-	var clickedpage;
-	var page;
 	var onpage;
+	var topage;
 
 	//event listeners navigation functionality
-	$('.page-prev').on('click', function(e){
+	prev.on('click', function(e){
 		e.preventDefault();
 
 		if(!toggleNextPrev(this, 'prev', last, gallery))
@@ -206,7 +206,7 @@ function pagerNav(gallery) {
 		if(!next.hasClass('hover-page')) { next.addClass('hover-page'); }
 	});
 
-	$('.page-next').on('click', function(e){
+	next.on('click', function(e){
 		e.preventDefault();
 
 		if(!toggleNextPrev(this, 'next', last, gallery))
@@ -215,7 +215,7 @@ function pagerNav(gallery) {
 		if(!prev.hasClass('hover-page')) { prev.addClass('hover-page'); }
 	});
 
-	$('.page').on('click', function(e){
+	page.on('click', function(e){
 		e.preventDefault();
 
 		//pagination buttons
@@ -223,17 +223,17 @@ function pagerNav(gallery) {
 		clicked = $(this);
 
 		//is selected page before or after current page
-		page = parseInt(clicked.text());
+		topage = parseInt(clicked.text());
 		onpage = parseInt(current.text());
-		if(page > onpage) {
+		if(topage > onpage) {
 			//swipes left
-			for(var i = onpage; i < page; i++){
+			for(var i = onpage; i < topage; i++){
 				$(container + i).addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active')
 					.next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
 			}
-		} else if(page < onpage) {
+		} else if(topage < onpage) {
 			//swipes right
-			for(var k = onpage; k > page; k--){
+			for(var k = onpage; k > topage; k--){
 				$(container + k).addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active')
 					.prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
 			}
@@ -244,11 +244,11 @@ function pagerNav(gallery) {
 		clicked.addClass('page-active');
 
 		//hover state updates based on position
-		if(page === last) {
+		if(topage === last) {
 			next.removeClass('hover-page');
 			prev.addClass('hover-page');
 		}
-		else if(page === 1) {
+		else if(topage === 1) {
 			prev.removeClass('hover-page');
 			next.addClass('hover-page');
 		}
