@@ -166,7 +166,7 @@ function renderGrid(data, perpage, gallery) {
 
 
 	//calculate number of pages of images in the gallery
-	if(data.resources.length >= perpage) {
+	if(data.resources.length > perpage) {
 		var total = data.resources.length;
 		var pager = total / perpage;
 
