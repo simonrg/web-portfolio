@@ -65,9 +65,9 @@ function homepageBanner() {
 }
 
 function formValidation() {
-	var name = $('.form-field__item')[0];
-	var email = $('.form-field__item')[1];
-	var message = $('.form-field__item')[2];
+	var name = $('#name-form');
+	var email = $('#email-form');
+	var message = $('#message-form');
 
 	$('.form-field__item').on('input', function(){
 		if(name.value.length > 0 && email.value.length > 0 &&
