@@ -2,7 +2,7 @@
 title: Drafts
 layout: default
 permalink: drafts.html
-description: Here are some basic character sketches I like to do in my free time. Generally I start out doing these on paper, scan them in and go over them again with a tablet, usually in Krita. These are fun to do and are helpful when practicing line work, proportion and perspective. I'll usually update this section pretty frequently.
+description: This section is dedicated to character sketches I like to do in my free time. I start out doing these on paper with a Staedtler Mars Carbon 2H and 2B lead, scan them in and go over them again with a tablet, usually in Krita. These are helpful for practicing line work, proportion and perspective but are also really fun to do. This section is updated frequently as I continually iterate to improve line work and perspective.
 galleries:
 - portrait
 - sketch
@@ -11,6 +11,15 @@ galleries:
 {% include text.html %}
 
 {% for gallery in page.galleries %}
+	<div class="page-content__block">
+	{% case gallery %}
+		{% when 'portrait' %}
+			<p class="gallery-description">This section is a collection of images I classify as 'portraits'. It's a pretty arbitrary classification to be honest, it's basically just all the stuff that aren't full figure images. I suppose maybe you could say they are close up images, poses with a bit more emphasis on expressions or emphasising details.</p>
+		{% when 'sketch' %}
+			<p class="gallery-description">These are my sketch images. These are full pose, uncoloured character images. Lines are a bit rougher, and there is a lot of variation in the softness or hardness of the lines. My aim is to try to develop a more cohesive style. But also, more importantly, develop more clean, confident line strokes which is a constant iterative process and which is why you will see this section update quite frequently.</p>
+	{% endcase %}
+
 	{% include grid.html %}
+	</div>
 {% endfor %}
 

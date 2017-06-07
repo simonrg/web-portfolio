@@ -1,21 +1,19 @@
-<div class="page-content__block">
-	<div class="image-gallery">
+<div class="image-gallery">
+
+	<img class="ajax-loader" src="http://res.cloudinary.com/dvzk8xiff/image/upload/v1496806373/ajax-loader-portfolio_pn9pac.gif"/>
+
+	<div class="{{ gallery }} gallery-table gallery-table__{{ gallery }}" role="gallery"></div>
+
+	<nav class="navigation-pager navigation-pager__{{ gallery }}" role="navigation">
+	  <ul class="pagination">
+	    <li class="pager"><a class="page-prev" href="#" rel="prev">&laquo;</a></li>
+
+	  	<div class="pager-collection">
+	    	<li class="pager page page-active"><a href="?page=1" class="hover-page">1</a></li>
+	  	</div>
+
+	    <li class="pager"><a class="page-next hover-page" href="#" rel="next">&raquo;</a></li>
+	  </ul>
+	</nav>
 	
-		<img class="ajax-loader" src="http://res.cloudinary.com/dvzk8xiff/image/upload/v1496806373/ajax-loader-portfolio_pn9pac.gif"/>
-	
-		<div class="{{ gallery }} gallery-table gallery-table__{{ gallery }}" role="gallery"></div>
-
-		<nav class="navigation-pager navigation-pager__{{ gallery }}" role="navigation">
-		  <ul class="pagination">
-		    <li class="pager"><a class="page-prev" href="#" rel="prev">&laquo;</a></li>
-
-		  	<div class="pager-collection">
-		    	<li class="pager page page-active"><a href="?page=1" class="hover-page">1</a></li>
-		  	</div>
-
-		    <li class="pager"><a class="page-next hover-page" href="#" rel="next">&raquo;</a></li>
-		  </ul>
-		</nav>
-		
-	</div>
 </div>
