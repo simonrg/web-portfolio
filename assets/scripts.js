@@ -143,15 +143,12 @@ function renderGrid(data, perpage, gallery) {
 	for(var i = 0; i < data.resources.length; i++) {
 		var path = data.resources[i].public_id + '.' + data.resources[i].format;
 
-		if((i % perpage === 0) && (i !== 0))
-			images.push('</div>');
-
 		if(i % perpage === 0) {
 			
 			if(i === 0)
 				images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--active">');
 			else
-				images.push('<div class="gallery-table__container container-page-' + container + ' gallery-table__container--hidden next">');
+				images.push('</div><div class="gallery-table__container container-page-' + container + ' gallery-table__container--hidden next">');
 
 			container++;
 		}
@@ -160,9 +157,8 @@ function renderGrid(data, perpage, gallery) {
 			path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
 
 	}
-	images.push('</div>');
 
-	$('.' + gallery).append(images.join(''));
+	$('.' + gallery).append(images.join('') + '</div>');
 
 
 	//calculate number of pages of images in the gallery
@@ -272,13 +268,15 @@ function toggleNextPrev(btn, direction, last, gallery) {
 
 	//increment or decrement depending on direction
 	if(direction === 'prev') {
-		current.addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active');
-		current.prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
+		current.addClass('next gallery-table__container--hidden').removeClass('gallery-table__container--active')
+			.prev().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden prev');
+
 		active.prev().addClass('page-active');
 	}
 	else {
-		current.addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active');
-		current.next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
+		current.addClass('prev gallery-table__container--hidden').removeClass('gallery-table__container--active')
+			.next().addClass('gallery-table__container--active').removeClass('gallery-table__container--hidden next');
+
 		active.next().addClass('page-active');
 	}
 	current = $('.' + gallery + ' > .gallery-table__container--active');	//update current (visible) container
