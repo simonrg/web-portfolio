@@ -179,6 +179,9 @@ function renderGrid(data, perpage, gallery) {
 		
 		pagerNav(gallery);
 	}
+
+	//ajax loader
+	$('.ajax-loader').css('display', 'none');
 }
 
 function pagerNav(gallery) {

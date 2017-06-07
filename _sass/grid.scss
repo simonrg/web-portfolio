@@ -62,7 +62,18 @@
 }
 
 .image-gallery {
+	position: relative;
 	border: 1px solid #5090A5;
+}
+
+.ajax-loader {
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1;
 }
 
 .gallery__image {
@@ -130,6 +141,7 @@
 	width: 100%;
     background-color: lightblue;
     box-sizing: border-box;
+    min-height: 15vw;
 }
 
 .gallery-table__container {
