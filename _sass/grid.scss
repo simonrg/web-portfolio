@@ -43,7 +43,6 @@
 @media only screen and (min-width: $extra-large) {
 	.col:nth-child(3n+1) {
 		clear: both;
-		float: left;
 		margin-left: 2%;
 	}
 
@@ -55,6 +54,10 @@
 	.col:nth-child(3n) {
 		float: right;
 		margin-right: 2%;
+	}
+
+	.col:nth-child(n+4) {
+		margin-top: 0;
 	}
 }
 
