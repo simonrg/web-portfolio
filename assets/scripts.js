@@ -2,7 +2,9 @@ var page = $(location).attr('pathname').replace(/\//g, '');
 
 if(page === '' || page === 'web-portfolio') { page = 'home'; }
 if(page.includes('draft')) { 
-	$('.gallery-table').each(function(i, obj) {
+	var galleries = $('.gallery-table');
+
+	galleries.each(function(i, obj) {
     	cloudinaryAPI(obj.className.split(' ')[0]);
 	});
 }
@@ -34,10 +36,13 @@ $(document).ready(function(){
 
 
 function toggleMobileMenu() {
-	var menu = $('.mobile-menu__item');
+	var menu = $('.mobile-menu');
+	var item = $('.mobile-menu__item');
+	var btn = $('.nav-trigger');
+	var body = $('body');
 
-	for(var i = 0; i < menu.length; i++) {
-		if($.trim(menu[i].innerText) == $.trim(page.toUpperCase())) {	//all pages
+	for(var i = 0; i < item.length; i++) {
+		if($.trim(item[i].innerText) == $.trim(page.toUpperCase())) {	//all pages
 			$('.mobile-menu__item:eq(' + i + ')').addClass('active');
 			continue;
 		}
@@ -47,9 +52,9 @@ function toggleMobileMenu() {
 		}
 	}
 
-	$('.nav-trigger').on('click', function(){
-		$('.mobile-menu').toggleClass('menu-open');
-		$('body').toggleClass('mobile-menu-open');
+	btn.on('click', function(){
+		menu.toggleClass('menu-open');
+		body.toggleClass('mobile-menu-open');
 	});
 }
 
@@ -59,16 +64,20 @@ function footerYear() {
 }
 
 function homepageBanner() {
-	$('.site-hero__button').on('click', function(){
-		$(this).addClass('site-hero__button--transition');
-		$('.site-hero__preview').addClass('site-hero__preview--expanded');
-		setTimeout(function(){ $('.site-hero__preview').children().css('visibility', 'visible'); }, 100);
+	var banner = $('.site-hero');
+	var bannerbtn = $('.site-hero__button');
+	var bannertext = $('.site-hero__preview');
+
+	bannerbtn.on('click', function(){
+		bannerbtn.addClass('site-hero__button--transition');
+		bannertext.addClass('site-hero__preview--expanded');
+		setTimeout(function(){ bannertext.children().css('visibility', 'visible'); }, 100);
 	});
 
-	$('.site-hero').on('mouseleave', function(){
-		$('.site-hero__button').removeClass('site-hero__button--transition');
-		$('.site-hero__preview').removeClass('site-hero__preview--expanded');
-		setTimeout(function(){ $('.site-hero__preview').children().css('visibility', 'hidden'); }, 100);
+	banner.on('mouseleave', function(){
+		bannerbtn.removeClass('site-hero__button--transition');
+		bannertext.removeClass('site-hero__preview--expanded');
+		setTimeout(function(){ bannertext.children().css('visibility', 'hidden'); }, 100);
 	});
 }
 
@@ -76,17 +85,21 @@ function formValidation() {
 	var name = $('#name-form');
 	var email = $('#email-form');
 	var message = $('#message-form');
+	var formfield = $('.form-field__item');
+	var submit = $('.submit-btn');
 
-	$('.form-field__item').on('input', function(){
-		if(name.value.length > 0 && email.value.length > 0 &&
-			message.value.length > 0 && $('.submit-btn').hasClass('submit-btn--disabled')) {
-			$('.submit-btn').removeAttr('disabled');
-			$('.submit-btn').toggleClass("submit-btn--disabled submit-btn--enabled");
+	formfield.on('input', function(){
+		//enable submit button when all fields have a value
+		if(name.val().length > 0 && email.val().length > 0 &&
+			message.val().length > 0 && submit.hasClass('submit-btn--disabled')) {
+			submit.removeAttr('disabled');
+			submit.toggleClass("submit-btn--disabled submit-btn--enabled");
 		}
 
-		if($(this).val().length == 0 && $('.submit-btn').hasClass('submit-btn--enabled')) {
-			$('.submit-btn').attr('disabled', true);
-			$('.submit-btn').toggleClass("submit-btn--enabled submit-btn--disabled");
+		//any input field is empty re-disable the submit button
+		if($(this).val().length == 0 && submit.hasClass('submit-btn--enabled')) {
+			submit.attr('disabled', true);
+			submit.toggleClass("submit-btn--enabled submit-btn--disabled");
 		}
 	});
 }
