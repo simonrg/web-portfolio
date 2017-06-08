@@ -78,15 +78,6 @@ h2 {
 	padding: 40px 0;
 }
 
-.page-content__full-width-block {
-    background-color: #40285f;
-    margin: 0 -6%;
-
-    @media (min-width: $extra-large) {
-    	margin: 0 -34%;
-    }
-}
-
 .full-image__img {
     width: 100%;
     display: block;

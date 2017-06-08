@@ -1,10 +1,18 @@
- .page-content__full-width-block {
- 	background-color: #afafaf;
+.page-content__block--full {
  	min-height: 600px;
+    margin: 0 -6%;
+
+    @media (min-width: $extra-large) {
+    	margin: 0 -34%;
+    }
 }
 
-.full-image__container {
-	display: none;
+.no-fullwidth {
+	background-color: #afafaf;
+}
+
+.fullwidth {
+	background-color: #40285f;
 }
 
 .full-image {
