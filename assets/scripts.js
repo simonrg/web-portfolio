@@ -1,7 +1,7 @@
 var page = $(location).attr('pathname').replace(/\//g, '');
 
 if(page === '' || page === 'web-portfolio') { page = 'home'; }
-if(page.includes('draft')) { 
+if(page.indexOf('draft') > -1) { 
 	var galleries = $('.gallery-table');
 
 	galleries.each(function(i, obj) {
@@ -15,7 +15,7 @@ $(document).ready(function(){
 	if(navigator.userAgent.indexOf("Mobile") > -1)
 		toggleMobileMenu();
 
-	if(page.includes('home')) {
+	if(page.indexOf('home') > -1) {
 		homepageBanner();
         cloudinaryAPI('banner');
 	}
@@ -300,12 +300,14 @@ function toggleNextPrev(btn, direction, last, gallery) {
 
 		active.next().addClass('page-active');
 	}
-	current = $('.' + gallery + ' > .gallery-table__container--active');	//update current (visible) container
+	
+	//update active page to detect if next/prev btn is clickable again
 	active.removeClass('page-active');
+	active = $('.navigation-pager__' + gallery + ' .page-active');
 
 	//pagination next prev styling
 	//remove hoverable state if no more pages in either direction
-	if(current.attr('class').includes('container-page-1') || current.attr('class').includes('container-page-' + last))
+	if(active.text() == 1 || active.text() == last)
 		$(btn).toggleClass('hover-page');
 
 	return true;
