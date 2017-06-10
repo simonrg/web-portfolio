@@ -9,28 +9,20 @@
 .avatar-image {
 	display: block;
 	margin: auto;
-	width: 250px;
 	border-radius: 50%;
 }
 
 @media (min-width: $small-up) {
+	.summary-image,
 	.summary-blurb {
 		display: table-cell;
 		vertical-align: middle;
-		width: 75%;
 	}
 
 	.avatar-image {
 		display: block;
 		margin-left: 50px;
 		float: right;
-	}
-}
-
-@media (min-width: $small-up) and (max-width: $medium-only) {
-	.summary-image {
-    	display: table-cell;
-    	vertical-align: middle;
 	}
 }
 

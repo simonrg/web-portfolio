@@ -2,9 +2,8 @@
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid #e8e8e8;
-  background-color: #242424;
-  color: #7d7d7d;
+  background-color: $colour-section-dark;
+  color: $colour-light-grey;
 }
 
 .site-footer__container {
@@ -12,7 +11,7 @@
 }
 
 .sub-footer {
-  border-top: 1px solid #7d7d7d;
+  border-top: 1px solid $colour-border-grey;
   text-align: center;
   padding: 20px 0;
 }
@@ -29,7 +28,6 @@
 
 .social-media-link {
   display: block;
-  height: inherit;
   color: inherit;
 }
 
@@ -40,14 +38,14 @@
   height: 60px;
   line-height: 70px;
   text-align: center;
-  background-color: #2e2e2e;
+  background-color: $colour-dark-grey;
   margin: 0 10px;
   border-radius: 50%;
   border: 2px solid transparent;
 
   &:hover {
-    border: 2px solid #57c5a0;
-    color: #57c5a0;
+    border: 2px solid;
+    color: $colour-turquoise-green;
   }
 }
 
@@ -61,6 +59,7 @@
 }
 
 .icon {
+  font-size: 16px;
   margin-left: 2px;
 }
 
@@ -105,25 +104,16 @@
   }
 }
 
-.form-field__label {
-  padding-right: 10px;
-  font-size: 22px;
-
-  @media (min-width: $small-up) {
-    font-size: 18px;
-  }
-}
-
 .form-field__item {
   border: 0;
-  color: #a7a7a7;
+  color: $colour-active-grey;
   font-family: inherit;
   font-size: inherit;
   padding: 15px;
   margin: 15px 0;
-  border-bottom: 1px solid #5a5e61;
+  border-bottom: 1px solid $colour-border-grey;
   width: 100%;
-  background-color: #333333;
+  background-color: $colour-dark-grey;
   box-sizing: border-box;
 }
 
@@ -140,32 +130,28 @@
 }
 
 .submit-btn {
-  padding: 15px;
-  width: 100%;
   text-transform: uppercase;
-  background-color: transparent;
-  font-weight: bold;
-
-  @media (max-width: $small-up) {
-    font-size: 20px;
-    font-weight: 100;
-  }
 }
 
 .submit-btn--enabled {
-  border: 1px solid #57c5a0;
-  color: #57c5a0;
+  color: $colour-turquoise-green;
 
   &:hover {
     cursor: pointer;
-    background-color: #57c5a0;
-    color: #616161;
+    background-color: $colour-turquoise-green;
+    color: white;
+    border: 1px solid transparent;
   }
 }
 
 .submit-btn--disabled {
-  border: 1px solid #313233;
-  color: #313233;
+  color: $colour-dark-grey;
+
+  &:active {
+    color: $colour-dark-grey;
+    background-color: transparent;
+    border: 1px solid;
+  }
 }
 
 .social-media-list {
@@ -187,7 +173,7 @@
 
   .footer-col-1 {
     padding-right: 30px;
-    border-right: 1px solid #7d7d7d;
+    border-right: 1px solid $colour-border-grey;
   }
 
   .footer-col-2 {

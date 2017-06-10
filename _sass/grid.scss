@@ -101,6 +101,15 @@
 	}
 }
 
+.navigation-mobile {
+	display: none;
+}
+
+.btn-default {
+    margin: 15px auto;
+    color: $colour-turquoise-green;
+}
+
 .navigation-pager {
 	display: none;
 	background-color: #7EB8CB;
@@ -117,7 +126,7 @@
 }
 
 .pagination a {
-    color: black;
+    color: $colour-black;
     padding: 8px 16px;
     text-decoration: none;
     cursor: default;
@@ -148,7 +157,6 @@
 .gallery-table__container {
 	display: inline-block;
     position: inherit;
-    overflow: auto;
 	width: inherit;
 }
 
