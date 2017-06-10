@@ -159,6 +159,12 @@ function renderGrid(data, perpage, gallery) {
 	var images = [];
 	var pages = [];
 	var container = 1;
+	var span;
+
+	if(perpage > 2)
+		span = 'span_1_of_3';
+	else
+		span = 'span_2_of_3';
 
 	//get uploaded images
 	for(var i = 0; i < data.resources.length; i++) {
@@ -174,7 +180,7 @@ function renderGrid(data, perpage, gallery) {
 			container++;
 		}
 
-		images.push('<div class="col span_1_of_3"><a data-fancybox="gallery" href="https://res.cloudinary.com/dvzk8xiff/image/upload/' + 
+		images.push('<div class="col ' + span + '"><a data-fancybox="gallery" href="https://res.cloudinary.com/dvzk8xiff/image/upload/' + 
 			path + '"><img src="https://res.cloudinary.com/dvzk8xiff/image/upload/' + path + '" class="gallery__image" width="370px" alt="image cell"></a></div>');
 
 	}
