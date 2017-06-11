@@ -33,7 +33,7 @@ body {
 	color: $colour-dark-grey;
 }
 
-span, div, p
+span, div, p, input
 {
 	line-height: 1.4em;
 	font-size: 20px;
@@ -124,7 +124,6 @@ h2 {
 	display: block;
 	padding: 15px;
 	width: 100%;
-    font-size: 20px;
     font-weight: 100;
     font-family: inherit;
     border: 1px solid;
@@ -136,9 +135,5 @@ h2 {
 	    	background-color: $colour-turquoise-green;
 	    	color: white;
 	    }
-    }
-
-    @media (min-width: $medium-only) {
-    	font-size: 18px;
     }
 }
