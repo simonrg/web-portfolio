@@ -1,4 +1,5 @@
 var page = $(location).attr('pathname').replace(/\//g, '');
+var link = $('.navlink');
 
 if(page === '' || page === 'web-portfolio') { page = 'home'; }
 if(page.indexOf('draft') > -1) { 
@@ -12,8 +13,15 @@ if(page.indexOf('draft') > -1) {
 
 $(document).ready(function(){
 
-	if(navigator.userAgent.indexOf("Mobile") > -1)
+	//navigation bar styling mobile or desktop
+	if($(window).width() < 600)
 		toggleMobileMenu();
+	else {
+		link.each(function(i) {
+			var text = $(this).text().toLowerCase();
+			if(text == page) { $(this).addClass('navlink-current'); }
+		});
+	}
 
 	if(page.indexOf('home') > -1) {
 		homepageBanner();

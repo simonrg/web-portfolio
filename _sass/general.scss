@@ -100,14 +100,20 @@ h2 {
     -webkit-transform: translateZ(0) scale(1, 1);
 }
 
-.link {
+.mobilelink,
+.navlink {
 	text-decoration: none;
   	text-transform: uppercase;
 	color: $colour-light-grey;
 }
 
-.nav-links__item .link:hover {
+.navlink:hover {
 	color: $colour-active-grey;
+}
+
+.navlink-current {
+	color: $colour-active-grey;
+	border-bottom: 1px solid $colour-turquoise-green;
 }
 
 .section-title {
