@@ -13,7 +13,11 @@
 }
 
 .post-list__item {
-  margin-bottom: 60px;
+  margin-bottom: 58px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .post-meta {
