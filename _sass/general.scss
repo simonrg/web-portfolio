@@ -35,12 +35,15 @@ body {
 
 span, div, p, input
 {
-	line-height: 1.4em;
 	font-size: 20px;
 
 	@media (min-width: $medium-only) {
 		font-size: 18px;
 	}
+}
+
+p {
+	line-height: 1.4em;
 }
 
 a {
