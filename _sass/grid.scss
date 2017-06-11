@@ -111,9 +111,10 @@
 	display: none;
 }
 
-.btn-default {
+.mobile-load {
     margin: 15px auto;
     color: $colour-turquoise-green;
+    cursor: pointer;
 }
 
 .navigation-pager {
@@ -180,6 +181,11 @@
 
 .next {
 	left: 100%;
+}
+
+.mobile-gallery__image {
+	position: inherit;
+	left: 0;
 }
 
 .gallery-table__container--active,

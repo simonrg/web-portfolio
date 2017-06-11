@@ -188,19 +188,39 @@ function renderGrid(data, perpage, gallery) {
 	$('.' + gallery).append(images.join('') + '</div>');
 
 
-	//calculate number of pages of images in the gallery
+	//show number specified in function parameter, navigate to show more
 	if(data.resources.length > perpage) {
-		var total = data.resources.length;
-		var pager = total / perpage;
 
-		for(var k = 2; k < Math.ceil(pager)+1; k++) {
-			pages.push('<li class="pager page"><a href="?page=' + k + '" class="hover-page">' + k + '</a></li>');
+		//different view controls for different screen sizes
+		if($(window).width() > 800) {
+		    var total = data.resources.length;
+			var pager = total / perpage;
+
+			for(var k = 2; k < Math.ceil(pager)+1; k++) {
+				pages.push('<li class="pager page"><a href="?page=' + k + '" class="hover-page">' + k + '</a></li>');
+			}
+
+			$('.navigation-pager__' + gallery + ' .pager-collection').append(pages);
+			$('.' + gallery + ' + .navigation-pager').css('display', 'block');
+			
+			pagerNav(gallery);
+		} else {
+			var mobile = $('.navigation-mobile__' + gallery);
+			var idx = 2;
+
+			//button to show more images for smaller screens
+			mobile.css('display', 'block');
+
+			$('.navigation-mobile__' + gallery + ' > .mobile-load').on('click', function(){
+				$('.container-page-' + idx).addClass('mobile-gallery__image');
+				idx++;
+
+				if(idx === container) {
+					mobile.css('display', 'none');
+				}
+			});
 		}
 
-		$('.navigation-pager__' + gallery + ' .pager-collection').append(pages);
-		$('.' + gallery + ' + .navigation-pager').css('display', 'block');
-		
-		pagerNav(gallery);
 	}
 
 	//ajax loader
