@@ -19,7 +19,7 @@ $(document).ready(function(){
 	else {
 		link.each(function(i) {
 			var text = $(this).text().toLowerCase();
-			if(text == page) { $(this).addClass('navlink-current'); }
+			if(page.indexOf(text) > -1) { $(this).addClass('navlink-current'); }
 		});
 	}
 
