@@ -9,27 +9,27 @@
         <form action="https://formspree.io/{{ site.email }}" method="POST">
           <div class="form-field__container">
             <div class="form-field__container-item">
-            <label class="form-field__label" for="name-form">Name:</label><input type="text" name="name" class="form-field__item" id="name-form">
+            <label class="form-field__label" for="name-form">Name:</label><input type="text" name="name" class="form-field__item" id="name-form" tabindex="1">
             </div>
             <div class="form-field__container-item">
-            <label class="form-field__label" for="email-form">Email:</label><input type="email" name="email" class="form-field__item" id="email-form" placeholder="example@domain.com"></div>
+            <label class="form-field__label" for="email-form">Email:</label><input type="email" name="email" class="form-field__item" id="email-form" placeholder="example@domain.com" tabindex="2"></div>
           </div>
           <label class="form-field__label" for="message-form">Message:</label>
-          <textarea type="text" name="message" id="message-form" class="form-field__item contact-text" placeholder="" tabindex="1"></textarea>
-          <input type="submit" value="Send" class="btn submit-btn submit-btn--disabled" disabled>
+          <textarea type="text" name="message" id="message-form" class="form-field__item contact-text" placeholder="" tabindex="3"></textarea>
+          <input type="submit" value="Send" class="btn submit-btn submit-btn--disabled" tabindex="4" disabled>
         </form>
       </div>
 
       <div class="footer-col footer-col-2">
         <ul class="social-media-list">
           <li class="social-media-list__item">
-            <a href="https://www.linkedin.com/in/simon-greene-b8bb70104/" class="social-media-link" target="_blank"><span class="icon icon--linkedin"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></span></a>
+            <a href="https://www.linkedin.com/in/simon-greene-b8bb70104/" class="social-media-link" target="_blank" tabindex="5"><span class="icon icon--linkedin"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></span></a>
           </li>
           <li class="social-media-list__item">
-            <a href="https://github.com/simonrg" class="social-media-link" target="_blank"><span class="icon icon--github"><i class="fa fa-github fa-2x" aria-hidden="true"></i></span><span class="username"></span></a>
+            <a href="https://github.com/simonrg" class="social-media-link" target="_blank" tabindex="6"><span class="icon icon--github"><i class="fa fa-github fa-2x" aria-hidden="true"></i></span><span class="username"></span></a>
           </li>
           <li class="social-media-list__item">
-            <a href="http://codepen.io/simon_rg/" class="social-media-link" target="_blank"><span class="icon icon--codepen"><i class="fa fa-codepen fa-2x" aria-hidden="true"></i></span></a>
+            <a href="http://codepen.io/simon_rg/" class="social-media-link" target="_blank" tabindex="7"><span class="icon icon--codepen"><i class="fa fa-codepen fa-2x" aria-hidden="true"></i></span></a>
           </li>
         </ul>
       </div>
